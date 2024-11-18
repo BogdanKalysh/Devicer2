@@ -8,15 +8,99 @@
     tools:context=".SignUpActivity">
 
     <TextView
+        android:id="@+id/tvCreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/title_create_account"
+        android:textSize="20sp"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etEmail"
+
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:autofillHints="Input your email"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/etName"/>
+
+    <EditText
+        android:id="@+id/etName"
+
+        android:hint="@string/name"
+        android:inputType="text"
+        android:autofillHints="Input your name"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/etEmail"
+        app:layout_constraintBottom_toTopOf="@id/etPassword"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:autofillHints="Input your password"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/etName"
+        app:layout_constraintBottom_toTopOf="@id/etRepeatPassword"/>
+
+    <EditText
+        android:id="@+id/etRepeatPassword"
+
+        android:hint="@string/repeat_password"
+        android:inputType="textPassword"
+        android:autofillHints="Input your password again"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/etPassword"
+        app:layout_constraintBottom_toTopOf="@id/btnSignUp"/>
+
+    <Button
+        android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:text="@string/button_sign_up"
-        android:textSize="20sp"
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etRepeatPassword"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAlreadyHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/title_already_have_account"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnLogInScreen"/>
+
+    <Button
+        android:id="@+id/btnLogInScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/button_log_in"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

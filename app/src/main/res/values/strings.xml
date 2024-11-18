@@ -8,4 +8,17 @@
     <!--  Buttons text  -->
     <string name="button_log_in">Log In</string>
     <string name="button_sign_up">Sign Up</string>
+
+    <!--  Titles  -->
+    <string name="title_hello_log_in">Hello,\nLog In</string>
+    <string name="title_don_t_have_account">Don\'t have an account?</string>
+    <string name="title_create_account">Create\nAccount</string>
+    <string name="title_already_have_account">Already hane an account?</string>
+
+    <!--  Hints  -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="repeat_password">Repeat password</string>
+
 </resources>
