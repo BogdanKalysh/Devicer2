@@ -51,4 +51,7 @@ dependencies {
     // Room
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    // Koin
+    implementation(libs.io.insert.koin)
 }
