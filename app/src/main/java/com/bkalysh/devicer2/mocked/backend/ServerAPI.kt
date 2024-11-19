@@ -35,7 +35,7 @@ class ServerAPI(
     suspend fun getUserByEmail(email: String) = userRepository.getUserByEmail(email)
 
     // Example method to get devices by owner ID
-    suspend fun getDevicesByOwnerId(ownerId: Long) = deviceRepository.getDevicesByOwnerId(ownerId)
+    fun getDevicesByOwnerId(ownerId: Long) = deviceRepository.getDevicesByOwnerId(ownerId)
 
     // Example method to get all device types
     fun getAllDeviceTypes() = deviceTypeRepository.getAllDeviceTypes()

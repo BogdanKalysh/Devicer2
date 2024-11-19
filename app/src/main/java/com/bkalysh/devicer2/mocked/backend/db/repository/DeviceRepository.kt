@@ -14,11 +14,11 @@ class DeviceRepository(private val deviceDao: DeviceDao) {
         deviceDao.upsertDevice(device)
     }
 
-    suspend fun getDeviceById(id: Long): Flow<Device?> {
+    fun getDeviceById(id: Long): Flow<Device?> {
         return deviceDao.getDeviceById(id)
     }
 
-    suspend fun getDevicesByOwnerId(ownerId: Long): Flow<List<Device>> {
+    fun getDevicesByOwnerId(ownerId: Long): Flow<List<Device>> {
         return deviceDao.getDevicesByOwnerId(ownerId)
     }
 

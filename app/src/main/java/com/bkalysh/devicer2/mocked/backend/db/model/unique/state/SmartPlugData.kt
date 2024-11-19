@@ -18,5 +18,5 @@ import com.bkalysh.devicer2.mocked.backend.db.model.Device
 )
 data class SmartPlugData(
     @PrimaryKey @ColumnInfo(name = "device_id") val deviceId: Long, // Primary key and foreign key
-    val wattage: Int // Energy consumpsion in Watts
+    val wattage: Int // Energy consumption in Watts
 )
