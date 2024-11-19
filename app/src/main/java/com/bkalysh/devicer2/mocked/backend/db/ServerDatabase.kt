@@ -10,9 +10,9 @@ import com.bkalysh.devicer2.mocked.backend.db.model.Device
 import com.bkalysh.devicer2.mocked.backend.db.model.DeviceModel
 import com.bkalysh.devicer2.mocked.backend.db.model.DeviceType
 import com.bkalysh.devicer2.mocked.backend.db.model.User
-import com.bkalysh.devicer2.mocked.backend.db.model.unique.state.SmartLampData
-import com.bkalysh.devicer2.mocked.backend.db.model.unique.state.SmartPlugData
-import com.bkalysh.devicer2.mocked.backend.db.model.unique.state.ThermostatData
+import com.bkalysh.devicer2.mocked.backend.db.model.unique.fields.SmartLampData
+import com.bkalysh.devicer2.mocked.backend.db.model.unique.fields.SmartPlugData
+import com.bkalysh.devicer2.mocked.backend.db.model.unique.fields.ThermostatData
 
 @Database(
     entities = [

@@ -1,4 +1,4 @@
-package com.bkalysh.devicer2.mocked.backend.db.model.unique.state
+package com.bkalysh.devicer2.mocked.backend.db.model.unique.fields
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
@@ -6,7 +6,7 @@ import androidx.room.ColumnInfo
 import com.bkalysh.devicer2.mocked.backend.db.model.Device
 
 @Entity(
-    tableName = "smart_plug_data",
+    tableName = "smart_lamp_data",
     foreignKeys = [
         ForeignKey(
             entity = Device::class,
@@ -16,7 +16,7 @@ import com.bkalysh.devicer2.mocked.backend.db.model.Device
         )
     ]
 )
-data class SmartPlugData(
+data class SmartLampData(
     @PrimaryKey @ColumnInfo(name = "device_id") val deviceId: Long, // Primary key and foreign key
-    val wattage: Int // Energy consumption in Watts
+    val brightness: Int // Brightness level, e.g., 0-100
 )

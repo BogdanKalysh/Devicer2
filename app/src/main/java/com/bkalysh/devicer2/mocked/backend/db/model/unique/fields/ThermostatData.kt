@@ -1,4 +1,4 @@
-package com.bkalysh.devicer2.mocked.backend.db.model.unique.state
+package com.bkalysh.devicer2.mocked.backend.db.model.unique.fields
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
