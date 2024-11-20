@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import androidx.fragment.app.DialogFragment
-import com.bkalysh.devicer2.activities.viewmodels.MainViewModel
+import com.bkalysh.devicer2.viewmodels.MainViewModel
 import com.bkalysh.devicer2.adapters.DeviceModelSpinnerAdapter
 import com.bkalysh.devicer2.adapters.DeviceTypeSpinnerAdapter
 import com.bkalysh.devicer2.database.models.DeviceType

@@ -1,4 +1,4 @@
-package com.bkalysh.devicer2.activities.viewmodels
+package com.bkalysh.devicer2.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

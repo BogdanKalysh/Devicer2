@@ -1,9 +1,9 @@
 package com.bkalysh.devicer2
 
 import androidx.room.Room
-import com.bkalysh.devicer2.activities.viewmodels.LoginViewModel
-import com.bkalysh.devicer2.activities.viewmodels.MainViewModel
-import com.bkalysh.devicer2.activities.viewmodels.SignUpViewModel
+import com.bkalysh.devicer2.viewmodels.LoginViewModel
+import com.bkalysh.devicer2.viewmodels.MainViewModel
+import com.bkalysh.devicer2.viewmodels.SignUpViewModel
 import com.bkalysh.devicer2.database.DevicerDatabase
 import com.bkalysh.devicer2.database.repository.DeviceModelRepository
 import com.bkalysh.devicer2.database.repository.DeviceTypeRepository

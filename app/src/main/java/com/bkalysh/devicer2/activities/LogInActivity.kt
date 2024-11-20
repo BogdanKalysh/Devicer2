@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bkalysh.devicer2.R
-import com.bkalysh.devicer2.activities.viewmodels.LoginViewModel
+import com.bkalysh.devicer2.viewmodels.LoginViewModel
 import com.bkalysh.devicer2.databinding.ActivityLogInBinding
 import com.bkalysh.devicer2.utils.JWT.Companion.storeJwtToken
 import org.koin.androidx.viewmodel.ext.android.viewModel

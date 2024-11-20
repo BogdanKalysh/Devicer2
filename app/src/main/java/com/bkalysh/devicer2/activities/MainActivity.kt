@@ -9,7 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import com.bkalysh.devicer2.R
-import com.bkalysh.devicer2.activities.viewmodels.MainViewModel
+import com.bkalysh.devicer2.viewmodels.MainViewModel
 import com.bkalysh.devicer2.databinding.ActivityMainBinding
 import com.bkalysh.devicer2.fragments.AddDeviceDialogFragment
 import com.bkalysh.devicer2.utils.Constants.ADD_DEVICE_DIALOG
