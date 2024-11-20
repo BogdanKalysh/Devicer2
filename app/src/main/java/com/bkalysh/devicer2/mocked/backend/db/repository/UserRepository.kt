@@ -1,7 +1,7 @@
 package com.bkalysh.devicer2.mocked.backend.db.repository
 
 import com.bkalysh.devicer2.mocked.backend.db.dao.UserDao
-import com.bkalysh.devicer2.mocked.backend.db.model.User
+import com.bkalysh.devicer2.mocked.backend.db.models.User
 
 class UserRepository(private val userDao: UserDao) {
 

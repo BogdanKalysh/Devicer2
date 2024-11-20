@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Delete
 import androidx.room.Upsert
-import com.bkalysh.devicer2.mocked.backend.db.model.DeviceType
+import com.bkalysh.devicer2.mocked.backend.db.models.DeviceType
 import kotlinx.coroutines.flow.Flow
 
 @Dao

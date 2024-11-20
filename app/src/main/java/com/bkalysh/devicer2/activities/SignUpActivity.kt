@@ -1,4 +1,4 @@
-package com.bkalysh.devicer2.activity
+package com.bkalysh.devicer2.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,14 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bkalysh.devicer2.R
-import com.bkalysh.devicer2.activity.viewmodel.SignUpViewmodel
+import com.bkalysh.devicer2.activities.viewmodels.SignUpViewModel
 import com.bkalysh.devicer2.databinding.ActivitySignUpBinding
 import com.bkalysh.devicer2.utils.JWT
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
-    private val viewModel: SignUpViewmodel by viewModel()
+    private val viewModel: SignUpViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

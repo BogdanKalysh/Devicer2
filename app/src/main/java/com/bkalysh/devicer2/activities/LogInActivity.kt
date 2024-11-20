@@ -1,4 +1,4 @@
-package com.bkalysh.devicer2.activity
+package com.bkalysh.devicer2.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,14 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bkalysh.devicer2.R
-import com.bkalysh.devicer2.activity.viewmodel.LoginViewmodel
+import com.bkalysh.devicer2.activities.viewmodels.LoginViewModel
 import com.bkalysh.devicer2.databinding.ActivityLogInBinding
 import com.bkalysh.devicer2.utils.JWT.Companion.storeJwtToken
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LogInActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLogInBinding
-    private val viewModel: LoginViewmodel by viewModel()
+    private val viewModel: LoginViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

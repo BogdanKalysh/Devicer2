@@ -4,10 +4,10 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Delete
 import androidx.room.Upsert
-import com.bkalysh.devicer2.mocked.backend.db.model.Device
-import com.bkalysh.devicer2.mocked.backend.db.model.unique.fields.SmartLampData
-import com.bkalysh.devicer2.mocked.backend.db.model.unique.fields.SmartPlugData
-import com.bkalysh.devicer2.mocked.backend.db.model.unique.fields.ThermostatData
+import com.bkalysh.devicer2.mocked.backend.db.models.Device
+import com.bkalysh.devicer2.mocked.backend.db.models.unique.fields.SmartLampData
+import com.bkalysh.devicer2.mocked.backend.db.models.unique.fields.SmartPlugData
+import com.bkalysh.devicer2.mocked.backend.db.models.unique.fields.ThermostatData
 import kotlinx.coroutines.flow.Flow
 
 @Dao

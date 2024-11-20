@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Delete
 import androidx.room.Insert
-import com.bkalysh.devicer2.mocked.backend.db.model.User
+import com.bkalysh.devicer2.mocked.backend.db.models.User
 
 @Dao
 interface UserDao {

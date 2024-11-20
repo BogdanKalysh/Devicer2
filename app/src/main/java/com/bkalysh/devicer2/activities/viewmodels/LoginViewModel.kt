@@ -1,4 +1,4 @@
-package com.bkalysh.devicer2.activity.viewmodel
+package com.bkalysh.devicer2.activities.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import com.bkalysh.devicer2.ServerAPI
 
-class LoginViewmodel(private val api: ServerAPI): ViewModel() {
+class LoginViewModel(private val api: ServerAPI): ViewModel() {
     private val _loginResult = MutableLiveData<Result<String>>()
     val loginResult: LiveData<Result<String>> get() = _loginResult
 

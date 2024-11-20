@@ -1,4 +1,4 @@
-package com.bkalysh.devicer2.mocked.backend.db.model
+package com.bkalysh.devicer2.mocked.backend.db.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

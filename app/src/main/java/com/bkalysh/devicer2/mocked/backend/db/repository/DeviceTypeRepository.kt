@@ -1,7 +1,7 @@
 package com.bkalysh.devicer2.mocked.backend.db.repository
 
 import com.bkalysh.devicer2.mocked.backend.db.dao.DeviceTypeDao
-import com.bkalysh.devicer2.mocked.backend.db.model.DeviceType
+import com.bkalysh.devicer2.mocked.backend.db.models.DeviceType
 import kotlinx.coroutines.flow.Flow
 
 class DeviceTypeRepository(private val deviceTypeDao: DeviceTypeDao) {

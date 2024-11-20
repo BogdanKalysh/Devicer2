@@ -1,4 +1,4 @@
-package com.bkalysh.devicer2.activity
+package com.bkalysh.devicer2.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,15 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bkalysh.devicer2.R
-import com.bkalysh.devicer2.databinding.ActivityStartBinding
-import com.bkalysh.devicer2.utils.JWT.Companion.getJwtToken
+import com.bkalysh.devicer2.databinding.ActivityMainBinding
+import com.bkalysh.devicer2.utils.JWT.Companion.deleteJwtToken
 
-class StartActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityStartBinding
-
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityStartBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -23,22 +22,10 @@ class StartActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        
-        binding.btnLogInScreen.setOnClickListener {
-            val intent = Intent(this, LogInActivity::class.java)
-            startActivity(intent)
-        }
-        binding.btnSignUpScreen.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
 
-        checkIfLoggedIn()
-    }
-
-    private fun checkIfLoggedIn() {
-        getJwtToken(this)?.let {
-            val intent = Intent(this, MainActivity::class.java)
+        binding.btnLogout.setOnClickListener {
+            deleteJwtToken(this)
+            val intent = Intent(this, StartActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }

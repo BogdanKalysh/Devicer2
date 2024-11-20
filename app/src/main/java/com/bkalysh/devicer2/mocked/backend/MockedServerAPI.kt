@@ -1,7 +1,7 @@
 package com.bkalysh.devicer2.mocked.backend
 
 import com.bkalysh.devicer2.ServerAPI
-import com.bkalysh.devicer2.mocked.backend.db.model.User
+import com.bkalysh.devicer2.mocked.backend.db.models.User
 import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceModelRepository
 import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceRepository
 import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceTypeRepository

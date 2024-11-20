@@ -1,12 +1,12 @@
-package com.bkalysh.devicer2.mocked.backend.db.model.unique.fields
+package com.bkalysh.devicer2.mocked.backend.db.models.unique.fields
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
-import com.bkalysh.devicer2.mocked.backend.db.model.Device
+import com.bkalysh.devicer2.mocked.backend.db.models.Device
 
 @Entity(
-    tableName = "thermostat_data",
+    tableName = "smart_lamp_data",
     foreignKeys = [
         ForeignKey(
             entity = Device::class,
@@ -16,8 +16,7 @@ import com.bkalysh.devicer2.mocked.backend.db.model.Device
         )
     ]
 )
-data class ThermostatData(
+data class SmartLampData(
     @PrimaryKey @ColumnInfo(name = "device_id") val deviceId: Long, // Primary key and foreign key
-    @ColumnInfo(name = "room_temperature") val roomTemperature: Int,
-    @ColumnInfo(name = "goal_temperature")  val goalTemperature: Int
+    val brightness: Int // Brightness level, e.g., 0-100
 )
