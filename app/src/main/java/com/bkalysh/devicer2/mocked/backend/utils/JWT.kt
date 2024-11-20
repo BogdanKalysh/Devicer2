@@ -46,5 +46,20 @@ class JWT {
                 false
             }
         }
+
+        fun decodeJwtToken(token: String): Map<String, Any> {
+            val secretKey = "devicer-jwt-key-!#@5$&1234567890".toByteArray() // todo move key
+
+            val jwtConsumer = JwtConsumerBuilder()
+                .setRequireExpirationTime()
+                .setAllowedClockSkewInSeconds(30)
+                .setRequireSubject()
+                .setVerificationKey(HmacKey(secretKey))
+                .build()
+
+            val jwtClaims = jwtConsumer.processToClaims(token)
+
+            return jwtClaims.claimsMap
+        }
     }
 }

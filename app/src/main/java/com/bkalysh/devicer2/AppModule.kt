@@ -2,6 +2,7 @@ package com.bkalysh.devicer2
 
 import androidx.room.Room
 import com.bkalysh.devicer2.activities.viewmodels.LoginViewModel
+import com.bkalysh.devicer2.activities.viewmodels.MainViewModel
 import com.bkalysh.devicer2.activities.viewmodels.SignUpViewModel
 import com.bkalysh.devicer2.mocked.backend.MockedServerAPI
 import com.bkalysh.devicer2.mocked.backend.db.ServerDatabase
@@ -33,4 +34,5 @@ val appModule = module {
 
     viewModel { LoginViewModel(get()) }
     viewModel { SignUpViewModel(get()) }
+    viewModel { MainViewModel(get()) }
 }

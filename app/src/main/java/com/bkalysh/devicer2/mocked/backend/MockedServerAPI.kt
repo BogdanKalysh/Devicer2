@@ -7,6 +7,7 @@ import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceRepository
 import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceTypeRepository
 import com.bkalysh.devicer2.mocked.backend.db.repository.UserRepository
 import com.bkalysh.devicer2.mocked.backend.utils.JWT.Companion.createJwtToken
+import com.bkalysh.devicer2.mocked.backend.utils.JWT.Companion.decodeJwtToken
 
 class MockedServerAPI(
     private val deviceRepository: DeviceRepository,
@@ -34,5 +35,14 @@ class MockedServerAPI(
         }
 
         return createJwtToken(newUser.id.toString(), newUser.name)
+    }
+
+    override suspend fun getUserName(jwtToken: String): String {
+        try {
+            val tokenData = decodeJwtToken(jwtToken)
+            return tokenData["user_name"].toString()
+        } catch (e: Exception) {
+            throw IllegalArgumentException("Invalid token: ${e.message}")
+        }
     }
 }
