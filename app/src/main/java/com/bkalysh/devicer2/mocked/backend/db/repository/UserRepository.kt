@@ -5,9 +5,9 @@ import com.bkalysh.devicer2.mocked.backend.db.model.User
 
 class UserRepository(private val userDao: UserDao) {
 
-    // Insert or update a user in the database
-    suspend fun upsertUser(user: User) {
-        userDao.upsert(user)
+    // Insert a user in the database
+    suspend fun insertUser(user: User) {
+        userDao.insert(user)
     }
 
     // Get a user by its ID

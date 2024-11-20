@@ -3,13 +3,13 @@ package com.bkalysh.devicer2.mocked.backend.db.dao
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Delete
-import androidx.room.Upsert
+import androidx.room.Insert
 import com.bkalysh.devicer2.mocked.backend.db.model.User
 
 @Dao
 interface UserDao {
-    @Upsert
-    suspend fun upsert(user: User)
+    @Insert
+    suspend fun insert(user: User)
 
     @Query("SELECT * FROM user WHERE id = :id")
     suspend fun getUserById(id: Long): User?

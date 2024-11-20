@@ -1,13 +1,16 @@
 package com.bkalysh.devicer2
 
 import androidx.room.Room
-import com.bkalysh.devicer2.mocked.backend.ServerAPI
+import com.bkalysh.devicer2.activity.viewmodel.LoginViewmodel
+import com.bkalysh.devicer2.activity.viewmodel.SignUpViewmodel
+import com.bkalysh.devicer2.mocked.backend.MockedServerAPI
 import com.bkalysh.devicer2.mocked.backend.db.ServerDatabase
 import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceModelRepository
 import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceRepository
 import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceTypeRepository
 import com.bkalysh.devicer2.mocked.backend.db.repository.UserRepository
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
@@ -26,5 +29,8 @@ val appModule = module {
     single { DeviceTypeRepository(get()) }
     single { UserRepository(get()) }
 
-    single { ServerAPI(get(), get(), get(), get())}
+    single<ServerAPI> { MockedServerAPI(get(), get(), get(), get())}
+
+    viewModel { LoginViewmodel(get()) }
+    viewModel { SignUpViewmodel(get()) }
 }

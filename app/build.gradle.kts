@@ -44,6 +44,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -54,4 +56,11 @@ dependencies {
 
     // Koin
     implementation(libs.io.insert.koin)
+
+    // Lifecycle components
+    implementation(libs.androidx.lifecycle.viewmodel)
+
+    // JWT tokens creation and storing
+    implementation(libs.org.bitbucket.b.c.jose4j)
+    implementation(libs.androidx.security.crypto)
 }

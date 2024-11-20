@@ -8,6 +8,7 @@
     <!--  Buttons text  -->
     <string name="button_log_in">Log In</string>
     <string name="button_sign_up">Sign Up</string>
+    <string name="button_logout">Logout</string>
 
     <!--  Titles  -->
     <string name="title_hello_log_in">Hello,\nLog In</string>
