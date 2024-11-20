@@ -6,8 +6,12 @@ import kotlinx.coroutines.flow.Flow
 
 class DeviceModelRepository(private val deviceModelDao: DeviceModelDao) {
 
-    suspend fun upsertDeviceModel(deviceModel: DeviceModel) {
-        deviceModelDao.upsert(deviceModel)
+    suspend fun insertDeviceModel(deviceModel: DeviceModel) {
+        deviceModelDao.insert(deviceModel)
+    }
+
+    suspend fun insertAllDeviceModels(deviceModels: List<DeviceModel>) {
+        deviceModelDao.insertAll(deviceModels)
     }
 
     suspend fun deleteDeviceModel(deviceModel: DeviceModel) {

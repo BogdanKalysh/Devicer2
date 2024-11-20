@@ -3,15 +3,18 @@ package com.bkalysh.devicer2.mocked.backend.db.dao
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Delete
-import androidx.room.Upsert
+import androidx.room.Insert
 import com.bkalysh.devicer2.mocked.backend.db.models.DeviceModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DeviceModelDao {
 
-    @Upsert
-    suspend fun upsert(deviceModel: DeviceModel)
+    @Insert
+    suspend fun insert(deviceModel: DeviceModel)
+
+    @Insert
+    suspend fun insertAll(deviceModels: List<DeviceModel>)
 
     @Delete
     suspend fun delete(deviceModel: DeviceModel)
