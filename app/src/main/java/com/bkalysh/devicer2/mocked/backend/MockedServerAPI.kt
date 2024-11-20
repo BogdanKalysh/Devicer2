@@ -8,6 +8,7 @@ import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceTypeRepository
 import com.bkalysh.devicer2.mocked.backend.db.repository.UserRepository
 import com.bkalysh.devicer2.mocked.backend.utils.JWT.Companion.createJwtToken
 import com.bkalysh.devicer2.mocked.backend.utils.JWT.Companion.decodeJwtToken
+import com.google.gson.Gson
 
 class MockedServerAPI(
     private val deviceRepository: DeviceRepository,
@@ -15,6 +16,8 @@ class MockedServerAPI(
     private val deviceTypeRepository: DeviceTypeRepository,
     private val userRepository: UserRepository
 ): ServerAPI {
+    private val gson = Gson()
+
     override suspend fun loginUser(email: String, password: String): String {
         val user: User? = userRepository.getUserByEmail(email)
 
@@ -44,5 +47,13 @@ class MockedServerAPI(
         } catch (e: Exception) {
             throw IllegalArgumentException("Invalid token: ${e.message}")
         }
+    }
+
+    override suspend fun getDeviceTypes(): String {
+        return gson.toJson(deviceTypeRepository.getAllDeviceTypes())
+    }
+
+    override suspend fun getDeviceModels(): String {
+        return gson.toJson(deviceModelRepository.getAllDeviceModels())
     }
 }

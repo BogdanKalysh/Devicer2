@@ -5,7 +5,6 @@ import androidx.room.Query
 import androidx.room.Delete
 import androidx.room.Insert
 import com.bkalysh.devicer2.mocked.backend.db.models.DeviceType
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DeviceTypeDao {
@@ -23,5 +22,5 @@ interface DeviceTypeDao {
     suspend fun getDeviceTypeById(id: Long): DeviceType?
 
     @Query("SELECT * FROM device_type")
-    fun getAllDeviceTypes(): Flow<List<DeviceType>>
+    suspend fun getAllDeviceTypes(): List<DeviceType>
 }

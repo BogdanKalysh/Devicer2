@@ -2,7 +2,6 @@ package com.bkalysh.devicer2.mocked.backend.db.repository
 
 import com.bkalysh.devicer2.mocked.backend.db.dao.DeviceTypeDao
 import com.bkalysh.devicer2.mocked.backend.db.models.DeviceType
-import kotlinx.coroutines.flow.Flow
 
 class DeviceTypeRepository(private val deviceTypeDao: DeviceTypeDao) {
 
@@ -22,7 +21,7 @@ class DeviceTypeRepository(private val deviceTypeDao: DeviceTypeDao) {
         return deviceTypeDao.getDeviceTypeById(id)
     }
 
-    fun getAllDeviceTypes(): Flow<List<DeviceType>> {
+    suspend fun getAllDeviceTypes(): List<DeviceType> {
         return deviceTypeDao.getAllDeviceTypes()
     }
 }

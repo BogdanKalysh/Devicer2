@@ -15,6 +15,7 @@ koin = "3.2.0-beta-1"
 lifecycleviewmodel = "2.8.0"
 jose4j = "0.7.9"
 securityCrypto = "1.0.0"
+gson = "2.10.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +32,7 @@ io-insert-koin = {group = "io.insert-koin", name = "koin-android", version.ref =
 androidx-lifecycle-viewmodel = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleviewmodel"}
 org-bitbucket-b_c-jose4j = {group = "org.bitbucket.b_c", name = "jose4j", version.ref = "jose4j"}
 androidx-security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "securityCrypto" }
+com-google-code-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

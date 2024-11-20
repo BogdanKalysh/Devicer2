@@ -11,6 +11,8 @@ import androidx.core.view.isVisible
 import com.bkalysh.devicer2.R
 import com.bkalysh.devicer2.activities.viewmodels.MainViewModel
 import com.bkalysh.devicer2.databinding.ActivityMainBinding
+import com.bkalysh.devicer2.fragments.AddDeviceDialogFragment
+import com.bkalysh.devicer2.utils.Constants.ADD_DEVICE_DIALOG
 import com.bkalysh.devicer2.utils.JWT.Companion.deleteJwtToken
 import com.bkalysh.devicer2.utils.JWT.Companion.getJwtToken
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         setupOnClickListeners()
         setupLogoutListener()
-        updateUserData()
+        updateDataFromAPI()
     }
 
     private fun setupOnClickListeners() {
@@ -43,11 +45,16 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogout.setOnClickListener {
             logout()
         }
+
+        binding.btnAddDevice.setOnClickListener {
+            AddDeviceDialogFragment().show(supportFragmentManager, ADD_DEVICE_DIALOG)
+        }
     }
 
-    private fun updateUserData() {
+    private fun updateDataFromAPI() {
         getJwtToken(this)?.let { token ->
             viewModel.updateUserName(token)
+            viewModel.fetchDevicesData()
         }
 
         viewModel.userName.observe(this) { userName ->

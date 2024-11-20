@@ -63,4 +63,7 @@ dependencies {
     // JWT tokens creation and storing
     implementation(libs.org.bitbucket.b.c.jose4j)
     implementation(libs.androidx.security.crypto)
+
+    //JSON
+    implementation(libs.com.google.code.gson)
 }
