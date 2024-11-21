@@ -8,7 +8,7 @@ import com.bkalysh.devicer2.database.DevicerDatabase
 import com.bkalysh.devicer2.database.repository.DeviceModelRepository
 import com.bkalysh.devicer2.database.repository.DeviceTypeRepository
 import com.bkalysh.devicer2.database.repository.DevicerRepositoryFacade
-import com.bkalysh.devicer2.mocked.backend.MockedServerAPI
+import com.bkalysh.devicer2.mocked.api.MockedServerAPI
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

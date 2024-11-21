@@ -1,9 +1,9 @@
-package com.bkalysh.devicer2.mocked.backend.db.models.unique.fields
+package com.bkalysh.devicer2.mocked.api.db.models.unique.fields
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
-import com.bkalysh.devicer2.mocked.backend.db.models.Device
+import com.bkalysh.devicer2.mocked.api.db.models.Device
 
 @Entity(
     tableName = "smart_plug_data",

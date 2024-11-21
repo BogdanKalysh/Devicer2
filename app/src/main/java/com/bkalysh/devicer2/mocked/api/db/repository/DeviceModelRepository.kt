@@ -1,7 +1,7 @@
-package com.bkalysh.devicer2.mocked.backend.db.repository
+package com.bkalysh.devicer2.mocked.api.db.repository
 
-import com.bkalysh.devicer2.mocked.backend.db.dao.DeviceModelDao
-import com.bkalysh.devicer2.mocked.backend.db.models.DeviceModel
+import com.bkalysh.devicer2.mocked.api.db.dao.DeviceModelDao
+import com.bkalysh.devicer2.mocked.api.db.models.DeviceModel
 
 class DeviceModelRepository(private val deviceModelDao: DeviceModelDao) {
 

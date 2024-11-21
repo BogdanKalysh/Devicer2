@@ -1,10 +1,10 @@
-package com.bkalysh.devicer2.mocked.backend.db.dao
+package com.bkalysh.devicer2.mocked.api.db.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Delete
 import androidx.room.Insert
-import com.bkalysh.devicer2.mocked.backend.db.models.DeviceModel
+import com.bkalysh.devicer2.mocked.api.db.models.DeviceModel
 
 @Dao
 interface DeviceModelDao {

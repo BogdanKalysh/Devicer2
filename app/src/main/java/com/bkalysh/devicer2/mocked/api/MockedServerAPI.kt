@@ -1,13 +1,13 @@
-package com.bkalysh.devicer2.mocked.backend
+package com.bkalysh.devicer2.mocked.api
 
 import com.bkalysh.devicer2.ServerAPI
-import com.bkalysh.devicer2.mocked.backend.db.models.User
-import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceModelRepository
-import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceRepository
-import com.bkalysh.devicer2.mocked.backend.db.repository.DeviceTypeRepository
-import com.bkalysh.devicer2.mocked.backend.db.repository.UserRepository
-import com.bkalysh.devicer2.mocked.backend.utils.JWT.Companion.createJwtToken
-import com.bkalysh.devicer2.mocked.backend.utils.JWT.Companion.decodeJwtToken
+import com.bkalysh.devicer2.mocked.api.db.models.User
+import com.bkalysh.devicer2.mocked.api.db.repository.DeviceModelRepository
+import com.bkalysh.devicer2.mocked.api.db.repository.DeviceRepository
+import com.bkalysh.devicer2.mocked.api.db.repository.DeviceTypeRepository
+import com.bkalysh.devicer2.mocked.api.db.repository.UserRepository
+import com.bkalysh.devicer2.mocked.api.utils.JWT.Companion.createJwtToken
+import com.bkalysh.devicer2.mocked.api.utils.JWT.Companion.decodeJwtToken
 import com.google.gson.Gson
 
 class MockedServerAPI(

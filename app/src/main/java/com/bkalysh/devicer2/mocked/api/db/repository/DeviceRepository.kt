@@ -1,10 +1,10 @@
-package com.bkalysh.devicer2.mocked.backend.db.repository
+package com.bkalysh.devicer2.mocked.api.db.repository
 
-import com.bkalysh.devicer2.mocked.backend.db.dao.DeviceDao
-import com.bkalysh.devicer2.mocked.backend.db.models.Device
-import com.bkalysh.devicer2.mocked.backend.db.models.unique.fields.SmartLampData
-import com.bkalysh.devicer2.mocked.backend.db.models.unique.fields.SmartPlugData
-import com.bkalysh.devicer2.mocked.backend.db.models.unique.fields.ThermostatData
+import com.bkalysh.devicer2.mocked.api.db.dao.DeviceDao
+import com.bkalysh.devicer2.mocked.api.db.models.Device
+import com.bkalysh.devicer2.mocked.api.db.models.unique.fields.SmartLampData
+import com.bkalysh.devicer2.mocked.api.db.models.unique.fields.SmartPlugData
+import com.bkalysh.devicer2.mocked.api.db.models.unique.fields.ThermostatData
 import kotlinx.coroutines.flow.Flow
 
 class DeviceRepository(private val deviceDao: DeviceDao) {

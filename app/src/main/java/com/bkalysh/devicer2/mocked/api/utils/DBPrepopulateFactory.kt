@@ -1,7 +1,7 @@
-package com.bkalysh.devicer2.mocked.backend.utils
+package com.bkalysh.devicer2.mocked.api.utils
 
-import com.bkalysh.devicer2.mocked.backend.db.models.DeviceModel
-import com.bkalysh.devicer2.mocked.backend.db.models.DeviceType
+import com.bkalysh.devicer2.mocked.api.db.models.DeviceModel
+import com.bkalysh.devicer2.mocked.api.db.models.DeviceType
 
 object DBPrepopulateFactory {
     fun getDeviceTypes(): List<DeviceType> =

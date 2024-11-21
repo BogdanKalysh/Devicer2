@@ -1,4 +1,4 @@
-package com.bkalysh.devicer2.mocked.backend.utils
+package com.bkalysh.devicer2.mocked.api.utils
 
 import org.jose4j.jws.AlgorithmIdentifiers
 import org.jose4j.jws.JsonWebSignature
