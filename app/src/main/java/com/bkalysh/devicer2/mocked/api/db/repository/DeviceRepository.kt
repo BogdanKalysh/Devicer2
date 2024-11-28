@@ -5,7 +5,6 @@ import com.bkalysh.devicer2.mocked.api.db.models.Device
 import com.bkalysh.devicer2.mocked.api.db.models.unique.fields.SmartLampData
 import com.bkalysh.devicer2.mocked.api.db.models.unique.fields.SmartPlugData
 import com.bkalysh.devicer2.mocked.api.db.models.unique.fields.ThermostatData
-import kotlinx.coroutines.flow.Flow
 
 class DeviceRepository(private val deviceDao: DeviceDao) {
 
@@ -22,7 +21,7 @@ class DeviceRepository(private val deviceDao: DeviceDao) {
         return deviceDao.getDeviceBySerial(serialNumber)
     }
 
-    fun getDevicesByOwnerId(ownerId: Long): Flow<List<Device>> {
+    fun getDevicesByOwnerId(ownerId: Long): List<Device> {
         return deviceDao.getDevicesByOwnerId(ownerId)
     }
 

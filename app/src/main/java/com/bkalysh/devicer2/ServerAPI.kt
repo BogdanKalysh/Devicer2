@@ -7,4 +7,5 @@ interface ServerAPI {
     suspend fun getDeviceTypes(): String
     suspend fun getDeviceModels(): String
     suspend fun addDevice(jwtToken: String, deviceJson: String): Result<String>
+    suspend fun getAllDevices(jwtToken: String): String
 }

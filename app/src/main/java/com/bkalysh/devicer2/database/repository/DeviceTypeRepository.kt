@@ -6,11 +6,11 @@ import com.bkalysh.devicer2.database.models.DeviceType
 
 
 class DeviceTypeRepository(private val deviceTypeDao: DeviceTypeDao) {
-    fun insertAllDeviceTypes(deviceTypes: List<DeviceType>) {
+    suspend fun insertAllDeviceTypes(deviceTypes: List<DeviceType>) {
         deviceTypeDao.insertAll(deviceTypes)
     }
 
-    fun deleteAllDeviceTypes() {
+    suspend fun deleteAllDeviceTypes() {
         deviceTypeDao.deleteAll()
     }
 

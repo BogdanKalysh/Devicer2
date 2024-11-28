@@ -91,4 +91,11 @@ class MockedServerAPI(
             "Thermostat" -> deviceRepository.upsertThermostatData(ThermostatData(device.id, 25, 25))
         }
     }
+
+    override suspend fun getAllDevices(jwtToken: String): String {
+        val tokenData = decodeJwtToken(jwtToken)
+        val ownerId = userRepository.getUserByEmail(tokenData["email"].toString())?.id ?: 0
+
+        return gson.toJson(deviceRepository.getDevicesByOwnerId(ownerId))
+    }
 }

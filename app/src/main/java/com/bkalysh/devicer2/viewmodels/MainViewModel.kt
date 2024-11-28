@@ -22,6 +22,7 @@ class MainViewModel(private val api: ServerAPI, private val repositoryFacade: De
 
     val deviceTypes: LiveData<List<DeviceType>> = repositoryFacade.deviceTypeRepository.getAllDeviceTypes()
     val deviceModels: LiveData<List<DeviceModel>> = repositoryFacade.deviceModelRepository.getAllDeviceModels()
+    val devices: LiveData<List<Device>> = repositoryFacade.deviceRepository.getAllDevices()
 
     private val gson = Gson()
     private val scope = CoroutineScope(Dispatchers.IO)
@@ -29,7 +30,7 @@ class MainViewModel(private val api: ServerAPI, private val repositoryFacade: De
     private val _toastMessage = MutableLiveData<String>()
     val toastMessage: LiveData<String> get() = _toastMessage
 
-    fun fetchDevicesData() {
+    fun fetchDevicesData(jwtToken: String) {
         scope.launch {
             val jsonDeviceTypes = api.getDeviceTypes()
             val deviceTypesTypeToken = object : TypeToken<List<DeviceType>>() {}.type
@@ -44,6 +45,19 @@ class MainViewModel(private val api: ServerAPI, private val repositoryFacade: De
 
             repositoryFacade.deviceModelRepository.deleteAllDeviceModels()
             repositoryFacade.deviceModelRepository.insertAllDeviceModels(deviceModels)
+        }
+
+        scope.launch {
+            try {
+                val jsonDevices = api.getAllDevices(jwtToken)
+                val devicesToken = object : TypeToken<List<Device>>() {}.type
+                val devices: List<Device> = gson.fromJson(jsonDevices, devicesToken)
+
+                repositoryFacade.deviceRepository.deleteAllDevices()
+                repositoryFacade.deviceRepository.insertAllDevices(devices)
+            } catch (e: Exception) {
+                _shouldLogOut.postValue(true)
+            }
         }
     }
 
@@ -60,11 +74,18 @@ class MainViewModel(private val api: ServerAPI, private val repositoryFacade: De
 
     fun addDevice(jwtToken: String, device: Device) {
         scope.launch {
-            api.addDevice(jwtToken,  gson.toJson(device)).onSuccess {
-                // TODO add device to local db
+            api.addDevice(jwtToken,  gson.toJson(device)).onSuccess { deviceJson ->
+                val deviceObj = gson.fromJson(deviceJson, Device::class.java)
+                repositoryFacade.deviceRepository.insertDevice(deviceObj)
             }.onFailure {
                 _toastMessage.postValue("Unable to create a device due to an issue")
             }
+        }
+    }
+
+    fun dropLocalDatabase() {
+        scope.launch {
+            repositoryFacade.deviceRepository.deleteAllDevices()
         }
     }
 }

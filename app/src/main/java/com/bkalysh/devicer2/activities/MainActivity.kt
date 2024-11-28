@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bkalysh.devicer2.R
+import com.bkalysh.devicer2.adapters.DevicesAdapter
 import com.bkalysh.devicer2.viewmodels.MainViewModel
 import com.bkalysh.devicer2.databinding.ActivityMainBinding
 import com.bkalysh.devicer2.fragments.AddDeviceDialogFragment
@@ -20,6 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModel()
+    private val devicesAdapter: DevicesAdapter = DevicesAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         setupOnClickListeners()
         setupLogoutListener()
+        setupDevicesRecyclerAdapter()
         setUpToaster()
         updateDataFromAPI()
     }
@@ -55,11 +59,26 @@ class MainActivity : AppCompatActivity() {
     private fun updateDataFromAPI() {
         getJwtToken(this)?.let { token ->
             viewModel.fetchUserName(token)
-            viewModel.fetchDevicesData()
+            viewModel.fetchDevicesData(token)
         }
 
         viewModel.userName.observe(this) { userName ->
             binding.tvUserName.text = userName
+        }
+    }
+
+    private fun setupDevicesRecyclerAdapter() {
+        binding.rvDevices.apply {
+            adapter = devicesAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity)
+        }
+
+        viewModel.devices.observe(this) { devices ->
+            devicesAdapter.devices = devices
+        }
+
+        viewModel.deviceModels.observe(this) { models ->
+            devicesAdapter.deviceModels = models
         }
     }
 
@@ -78,6 +97,7 @@ class MainActivity : AppCompatActivity() {
     private fun logout() {
         deleteJwtToken(this)
         Toast.makeText(this, "Logging out", Toast.LENGTH_SHORT).show()
+        viewModel.dropLocalDatabase()
         val intent = Intent(this, StartActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)

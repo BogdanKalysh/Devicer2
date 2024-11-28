@@ -1,5 +1,6 @@
 package com.bkalysh.devicer2.utils
 
+import com.bkalysh.devicer2.R
 import kotlin.random.Random
 
 object Utils {
@@ -24,5 +25,21 @@ object Utils {
         val patch = if (major == 3) 0 else Random.nextInt(0, 10)
 
         return "$major.$minor.$patch"
+    }
+
+    fun mapModelToImageResource(modelId: Int): Int {
+        val images = listOf(
+            R.drawable.ic_launcher_background,
+            R.drawable.ic_launcher_background,
+            R.drawable.ic_launcher_background,
+            R.drawable.ic_launcher_background,
+            R.drawable.ic_launcher_background,
+            R.drawable.ic_launcher_background,
+            R.drawable.ic_launcher_background,
+            R.drawable.ic_launcher_background,
+            R.drawable.ic_launcher_background
+        )
+
+        return images.elementAtOrNull(modelId) ?: R.drawable.ic_launcher_foreground
     }
 }

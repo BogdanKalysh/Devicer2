@@ -10,10 +10,10 @@ import com.bkalysh.devicer2.database.models.DeviceType
 interface DeviceTypeDao {
 
     @Insert
-    fun insertAll(deviceTypes: List<DeviceType>)
+    suspend fun insertAll(deviceTypes: List<DeviceType>)
 
     @Query("DELETE FROM device_type")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Query("SELECT * FROM device_type")
     fun getAll(): LiveData<List<DeviceType>>

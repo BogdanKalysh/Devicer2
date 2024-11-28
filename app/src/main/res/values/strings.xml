@@ -29,6 +29,7 @@
     <string name="repeat_password">Repeat password</string>
     <string name="enter">Enter</string>
 
-
-
+    <!--  Placeholders for textview  -->
+    <string name="device_serial">"SN: %s"</string>
+    <string name="undefined_model">Undefined model!</string>
 </resources>

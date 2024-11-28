@@ -1,24 +1,24 @@
 package com.bkalysh.devicer2.database.repository
 
+import androidx.lifecycle.LiveData
 import com.bkalysh.devicer2.database.dao.DeviceDao
 import com.bkalysh.devicer2.database.models.Device
-import kotlinx.coroutines.flow.Flow
 
 class DeviceRepository(private val deviceDao: DeviceDao) {
     suspend fun insertDevice(device: Device) {
         deviceDao.insertDevice(device)
     }
 
-    fun getDeviceById(id: Long): Device? {
-        return deviceDao.getDeviceById(id)
+    suspend fun insertAllDevices(devices: List<Device>) {
+        deviceDao.insertAllDevices(devices)
     }
 
-    fun getDeviceBySerial(serialNumber: String): Device? {
-        return deviceDao.getDeviceBySerial(serialNumber)
+    suspend fun deleteAllDevices() {
+        deviceDao.deleteAllDevices()
     }
 
-    fun getDevicesByOwnerId(ownerId: Long): Flow<List<Device>> {
-        return deviceDao.getDevicesByOwnerId(ownerId)
+    fun getAllDevices(): LiveData<List<Device>> {
+        return deviceDao.getAllDevices()
     }
 
     suspend fun deleteDevice(device: Device) {
