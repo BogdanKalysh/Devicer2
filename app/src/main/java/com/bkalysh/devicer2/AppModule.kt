@@ -6,6 +6,7 @@ import com.bkalysh.devicer2.viewmodels.MainViewModel
 import com.bkalysh.devicer2.viewmodels.SignUpViewModel
 import com.bkalysh.devicer2.database.DevicerDatabase
 import com.bkalysh.devicer2.database.repository.DeviceModelRepository
+import com.bkalysh.devicer2.database.repository.DeviceRepository
 import com.bkalysh.devicer2.database.repository.DeviceTypeRepository
 import com.bkalysh.devicer2.database.repository.DevicerRepositoryFacade
 import com.bkalysh.devicer2.mocked.api.MockedServerAPI
@@ -24,7 +25,8 @@ val appModule = module {
     // Provide Repositories
     single { DeviceTypeRepository(get<DevicerDatabase>().deviceTypeDao) }
     single { DeviceModelRepository(get<DevicerDatabase>().deviceModelDao) }
-    single {DevicerRepositoryFacade(get(), get())}
+    single { DeviceRepository(get<DevicerDatabase>().deviceDao) }
+    single {DevicerRepositoryFacade(get(), get(), get())}
 
     viewModel { LoginViewModel(get()) }
     viewModel { SignUpViewModel(get()) }
