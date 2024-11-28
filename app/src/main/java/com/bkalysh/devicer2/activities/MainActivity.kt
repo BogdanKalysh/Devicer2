@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         setupOnClickListeners()
         setupLogoutListener()
+        setUpToaster()
         updateDataFromAPI()
     }
 
@@ -53,12 +54,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateDataFromAPI() {
         getJwtToken(this)?.let { token ->
-            viewModel.updateUserName(token)
+            viewModel.fetchUserName(token)
             viewModel.fetchDevicesData()
         }
 
         viewModel.userName.observe(this) { userName ->
             binding.tvUserName.text = userName
+        }
+    }
+
+    private fun setUpToaster() {
+        viewModel.toastMessage.observe(this) { text ->
+            Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
         }
     }
 

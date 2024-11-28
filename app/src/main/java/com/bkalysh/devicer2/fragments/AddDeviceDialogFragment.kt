@@ -9,8 +9,14 @@ import androidx.fragment.app.DialogFragment
 import com.bkalysh.devicer2.viewmodels.MainViewModel
 import com.bkalysh.devicer2.adapters.DeviceModelSpinnerAdapter
 import com.bkalysh.devicer2.adapters.DeviceTypeSpinnerAdapter
+import com.bkalysh.devicer2.database.models.Device
+import com.bkalysh.devicer2.database.models.DeviceModel
 import com.bkalysh.devicer2.database.models.DeviceType
 import com.bkalysh.devicer2.databinding.DialogFragmentAddDeviceBinding
+import com.bkalysh.devicer2.utils.JWT
+import com.bkalysh.devicer2.utils.Utils.generateRandomFirmwareVersion
+import com.bkalysh.devicer2.utils.Utils.generateRandomMacAddress
+import com.bkalysh.devicer2.utils.Utils.generateRandomSerial
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddDeviceDialogFragment : DialogFragment()  {
@@ -36,10 +42,12 @@ class AddDeviceDialogFragment : DialogFragment()  {
             dismiss()
         }
         binding.btnAddDevice.setOnClickListener {
-            // Add a new device
+            JWT.getJwtToken(this.requireContext())?.let { token ->
+                viewModel.addDevice(token, createDevice())
+            }
+            dismiss()
         }
     }
-
 
     private fun setUpDeviceSpinners() {
         val typesSpinner = binding.spDeviceTypes
@@ -66,5 +74,20 @@ class AddDeviceDialogFragment : DialogFragment()  {
                 override fun onNothingSelected(parent: AdapterView<*>) {}
             }
         }
+    }
+
+    private fun createDevice(): Device {
+        val deviceModel = binding.spDeviceModels.selectedItem as DeviceModel
+
+        return Device (
+            id = 0,
+            name = binding.etName.text.toString(),
+            deviceModelId = deviceModel.id,
+            serialNumber = generateRandomSerial(),
+            macAddress = generateRandomMacAddress(),
+            firmwareVersion = generateRandomFirmwareVersion(),
+            ownerId = 0,
+            isPowered = false
+        )
     }
 }

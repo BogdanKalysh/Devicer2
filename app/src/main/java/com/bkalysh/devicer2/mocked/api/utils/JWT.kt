@@ -8,13 +8,14 @@ import org.jose4j.keys.HmacKey
 
 class JWT {
     companion object {
-        fun createJwtToken(userId: String, userName: String): String {
+        fun createJwtToken(email: String, userName: String): String {
             val secretKey = "devicer-jwt-key-!#@5$&1234567890".toByteArray() // todo move key
 
             val claims = JwtClaims().apply {
                 issuer = "devicer"
-                subject = userId
+                subject = userName
                 setClaim("user_name", userName)
+                setClaim("email", email)
                 setIssuedAtToNow()
                 setExpirationTimeMinutesInTheFuture(60f)
             }

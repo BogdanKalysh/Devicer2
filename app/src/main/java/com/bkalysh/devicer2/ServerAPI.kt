@@ -6,4 +6,5 @@ interface ServerAPI {
     suspend fun getUserName(jwtToken: String): String
     suspend fun getDeviceTypes(): String
     suspend fun getDeviceModels(): String
+    suspend fun addDevice(jwtToken: String, deviceJson: String): Result<String>
 }

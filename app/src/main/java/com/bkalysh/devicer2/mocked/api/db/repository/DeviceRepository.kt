@@ -10,12 +10,16 @@ import kotlinx.coroutines.flow.Flow
 class DeviceRepository(private val deviceDao: DeviceDao) {
 
     // Device operations
-    suspend fun upsertDevice(device: Device) {
-        deviceDao.upsertDevice(device)
+    suspend fun insertDevice(device: Device) {
+        deviceDao.insertDevice(device)
     }
 
-    fun getDeviceById(id: Long): Flow<Device?> {
+    fun getDeviceById(id: Long): Device? {
         return deviceDao.getDeviceById(id)
+    }
+
+    fun getDeviceBySerial(serialNumber: String): Device? {
+        return deviceDao.getDeviceBySerial(serialNumber)
     }
 
     fun getDevicesByOwnerId(ownerId: Long): Flow<List<Device>> {
