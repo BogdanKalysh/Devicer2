@@ -15,7 +15,7 @@ import com.bkalysh.devicer2.database.models.DeviceModel
 import com.bkalysh.devicer2.databinding.ItemDeviceBinding
 import com.bkalysh.devicer2.utils.Utils.mapModelToImageResource
 
-class DevicesAdapter(private val context: Context) : RecyclerView.Adapter<DevicesAdapter.DeviceViewHolder>() {
+class DevicesRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<DevicesRecyclerViewAdapter.DeviceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceViewHolder {
         Log.d(TAG, "Created DevicesAdapter")
@@ -42,6 +42,8 @@ class DevicesAdapter(private val context: Context) : RecyclerView.Adapter<Device
                 ?: context.getString(R.string.undefined_model)
 
             imgDevice.setImageResource(mapModelToImageResource(device.deviceModelId.toInt()))
+
+            swPowerState.isChecked = device.isPowered
 
             root.setOnClickListener {
                 Log.i(TAG, "Starting device info activity for: $device")
@@ -81,6 +83,6 @@ class DevicesAdapter(private val context: Context) : RecyclerView.Adapter<Device
         }
 
     companion object {
-        val TAG: String = DevicesAdapter::class.java.name
+        val TAG: String = DevicesRecyclerViewAdapter::class.java.name
     }
 }

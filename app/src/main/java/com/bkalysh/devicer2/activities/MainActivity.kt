@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bkalysh.devicer2.R
-import com.bkalysh.devicer2.adapters.DevicesAdapter
+import com.bkalysh.devicer2.adapters.DevicesRecyclerViewAdapter
 import com.bkalysh.devicer2.viewmodels.MainViewModel
 import com.bkalysh.devicer2.databinding.ActivityMainBinding
 import com.bkalysh.devicer2.fragments.AddDeviceDialogFragment
@@ -22,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModel()
-    private val devicesAdapter: DevicesAdapter = DevicesAdapter(this)
+    private val devicesAdapter: DevicesRecyclerViewAdapter = DevicesRecyclerViewAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
