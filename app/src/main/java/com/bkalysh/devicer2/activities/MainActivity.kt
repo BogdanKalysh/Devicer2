@@ -44,7 +44,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupOnClickListeners() {
         binding.clUserData.setOnClickListener {
-            binding.btnLogout.isVisible = !binding.btnLogout.isVisible
+            binding.btnLogout.isVisible = true
+            binding.dimmer.isVisible = true
+        }
+
+        binding.dimmer.setOnClickListener {
+            binding.btnLogout.isVisible = false
+            binding.dimmer.isVisible = false
         }
 
         binding.btnLogout.setOnClickListener {
