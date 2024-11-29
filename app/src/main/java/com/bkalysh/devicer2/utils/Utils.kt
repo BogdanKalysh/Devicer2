@@ -37,6 +37,7 @@ object Utils {
             R.drawable.ic_launcher_background,
             R.drawable.ic_launcher_background,
             R.drawable.ic_launcher_background,
+            R.drawable.ic_launcher_background,
             R.drawable.ic_launcher_background
         )
 

@@ -68,16 +68,16 @@ class DevicesAdapter(private val context: Context) : RecyclerView.Adapter<Device
         }
     }
     private val differ = AsyncListDiffer(this, diffCallback)
-    var devices: List<Device> = listOf()
+    var devices: List<Device>
+        get() = differ.currentList
         set(value) {
-            field = value
             differ.submitList(value)
         }
 
     var deviceModels: List<DeviceModel> = listOf()
         set(value) {
             field = value
-            differ.submitList(devices)
+            if (devices.isNotEmpty()) differ.submitList(devices)
         }
 
     companion object {
