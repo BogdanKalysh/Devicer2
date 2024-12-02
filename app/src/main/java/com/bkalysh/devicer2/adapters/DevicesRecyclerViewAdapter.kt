@@ -8,14 +8,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bkalysh.devicer2.activities.DeviceActivity
 import com.bkalysh.devicer2.R
+import com.bkalysh.devicer2.activities.DeviceActivity
 import com.bkalysh.devicer2.database.models.Device
 import com.bkalysh.devicer2.database.models.DeviceModel
 import com.bkalysh.devicer2.databinding.ItemDeviceBinding
 import com.bkalysh.devicer2.utils.Utils.mapModelToImageResource
 
-class DevicesRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<DevicesRecyclerViewAdapter.DeviceViewHolder>() {
+
+class DevicesRecyclerViewAdapter(private val context: Context, private val switchListener: OnSwitchToggleListener) : RecyclerView.Adapter<DevicesRecyclerViewAdapter.DeviceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceViewHolder {
         Log.d(TAG, "Created DevicesAdapter")
@@ -37,7 +38,6 @@ class DevicesRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
             Log.d(TAG, "Binding device: $device")
             tvDeviceName.text = device.name
             tvDeviceSerial.text = context.getString(R.string.device_serial, device.serialNumber)
-            Log.e("BTAG", "ID: " + device.deviceModelId)
             tvDeviceModel.text = (deviceModels.find { it.id == device.deviceModelId })?.name
                 ?: context.getString(R.string.undefined_model)
 
@@ -52,8 +52,7 @@ class DevicesRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
             }
 
             swPowerState.setOnClickListener {
-                Log.i(TAG, "Sending request to update device power state for: $device")
-
+                switchListener.onSwitchToggled(device, swPowerState.isChecked)
             }
         }
     }
@@ -81,6 +80,10 @@ class DevicesRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
             field = value
             if (devices.isNotEmpty()) differ.submitList(devices)
         }
+
+    interface OnSwitchToggleListener {
+        fun onSwitchToggled(device: Device, isChecked: Boolean)
+    }
 
     companion object {
         val TAG: String = DevicesRecyclerViewAdapter::class.java.name

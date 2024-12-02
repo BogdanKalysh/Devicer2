@@ -12,6 +12,9 @@ interface DeviceDao {
     @Insert
     suspend fun insertDevice(device: Device)
 
+    @Query("UPDATE device SET is_powered = :isPowered WHERE id = :id")
+    suspend fun updateDevicePowerState(id: Long, isPowered: Boolean)
+
     @Insert
     suspend fun insertAllDevices(devices: List<Device>)
 

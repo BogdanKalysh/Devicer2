@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bkalysh.devicer2.R
 import com.bkalysh.devicer2.adapters.DevicesRecyclerViewAdapter
+import com.bkalysh.devicer2.database.models.Device
 import com.bkalysh.devicer2.viewmodels.MainViewModel
 import com.bkalysh.devicer2.databinding.ActivityMainBinding
 import com.bkalysh.devicer2.fragments.AddDeviceDialogFragment
@@ -22,7 +23,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModel()
-    private val devicesAdapter: DevicesRecyclerViewAdapter = DevicesRecyclerViewAdapter(this)
+    private lateinit var devicesAdapter: DevicesRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +75,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupDevicesRecyclerAdapter() {
+        devicesAdapter = DevicesRecyclerViewAdapter(this,
+            object: DevicesRecyclerViewAdapter.OnSwitchToggleListener {
+                override fun onSwitchToggled(device: Device, isChecked: Boolean) {
+                    getJwtToken(this@MainActivity)?.let { token ->
+                        viewModel.setPowerState(token, device, isChecked)
+                    }
+                }
+            }
+        )
+
         binding.rvDevices.apply {
             adapter = devicesAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)

@@ -13,6 +13,7 @@ import com.bkalysh.devicer2.mocked.api.db.repository.UserRepository
 import com.bkalysh.devicer2.mocked.api.utils.JWT.Companion.createJwtToken
 import com.bkalysh.devicer2.mocked.api.utils.JWT.Companion.decodeJwtToken
 import com.google.gson.Gson
+import kotlinx.coroutines.delay
 
 class MockedServerAPI(
     private val deviceRepository: DeviceRepository,
@@ -97,5 +98,23 @@ class MockedServerAPI(
         val ownerId = userRepository.getUserByEmail(tokenData["email"].toString())?.id ?: 0
 
         return gson.toJson(deviceRepository.getDevicesByOwnerId(ownerId))
+    }
+
+    override suspend fun updateDevicePowerState(jwtToken: String, deviceJson: String): Result<String> {
+        val tokenData = decodeJwtToken(jwtToken)
+        val ownerId = userRepository.getUserByEmail(tokenData["email"].toString())?.id ?: 0
+        val device = gson.fromJson(deviceJson, Device::class.java)
+
+        delay(500)
+        if (device.ownerId != ownerId) {
+            return Result.failure(IllegalArgumentException("Invalid token"))
+        }
+
+        try {
+            deviceRepository.updateDevicePowerState(device.id, device.isPowered)
+            return Result.success(deviceJson)
+        } catch (e: Exception) {
+            return Result.failure(e)
+        }
     }
 }

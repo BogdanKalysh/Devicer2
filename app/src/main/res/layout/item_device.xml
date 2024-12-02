@@ -27,7 +27,8 @@
         android:layout_marginStart="16dp"
         app:layout_constraintTop_toTopOf="@id/img_device"
         app:layout_constraintStart_toEndOf="@id/img_device"
-        app:layout_constraintBottom_toTopOf="@id/tv_device_serial" />
+        app:layout_constraintBottom_toTopOf="@id/tv_device_serial"
+        app:layout_constraintEnd_toStartOf="@id/sw_power_state" />
 
     <TextView
         android:id="@+id/tv_device_serial"
@@ -40,7 +41,8 @@
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toEndOf="@id/img_device"
         app:layout_constraintTop_toBottomOf="@id/tv_device_name"
-        app:layout_constraintBottom_toTopOf="@id/tv_device_model"/>
+        app:layout_constraintBottom_toTopOf="@id/tv_device_model"
+        app:layout_constraintEnd_toStartOf="@id/sw_power_state" />
 
     <TextView
         android:id="@+id/tv_device_model"
@@ -53,7 +55,8 @@
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="@id/img_device"
         app:layout_constraintStart_toEndOf="@id/img_device"
-        app:layout_constraintTop_toBottomOf="@id/tv_device_serial" />
+        app:layout_constraintTop_toBottomOf="@id/tv_device_serial"
+        app:layout_constraintEnd_toStartOf="@id/sw_power_state" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/sw_power_state"

@@ -13,6 +13,10 @@ class DeviceRepository(private val deviceDao: DeviceDao) {
         deviceDao.insertDevice(device)
     }
 
+    suspend fun updateDevicePowerState(id: Long, isPowered: Boolean) {
+        deviceDao.updateDevicePowerState(id, isPowered)
+    }
+
     fun getDeviceById(id: Long): Device? {
         return deviceDao.getDeviceById(id)
     }

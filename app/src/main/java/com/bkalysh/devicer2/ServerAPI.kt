@@ -8,4 +8,5 @@ interface ServerAPI {
     suspend fun getDeviceModels(): String
     suspend fun addDevice(jwtToken: String, deviceJson: String): Result<String>
     suspend fun getAllDevices(jwtToken: String): String
+    suspend fun updateDevicePowerState(jwtToken: String, deviceJson: String): Result<String>
 }

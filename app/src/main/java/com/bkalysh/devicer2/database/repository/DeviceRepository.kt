@@ -9,6 +9,10 @@ class DeviceRepository(private val deviceDao: DeviceDao) {
         deviceDao.insertDevice(device)
     }
 
+    suspend fun updateDevicePowerState(id: Long, isPowered: Boolean) {
+        deviceDao.updateDevicePowerState(id, isPowered)
+    }
+
     suspend fun insertAllDevices(devices: List<Device>) {
         deviceDao.insertAllDevices(devices)
     }

@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val api: ServerAPI, private val repositoryFacade: DevicerRepositoryFacade): ViewModel() {
@@ -19,6 +20,8 @@ class MainViewModel(private val api: ServerAPI, private val repositoryFacade: De
     val userName: LiveData<String> get() = _userName
     private val _shouldLogOut = MutableLiveData(false)
     val shouldLogOut: LiveData<Boolean> get() = _shouldLogOut
+    private val _toastMessage = MutableLiveData<String>()
+    val toastMessage: LiveData<String> get() = _toastMessage
 
     val deviceTypes: LiveData<List<DeviceType>> = repositoryFacade.deviceTypeRepository.getAllDeviceTypes()
     val deviceModels: LiveData<List<DeviceModel>> = repositoryFacade.deviceModelRepository.getAllDeviceModels()
@@ -26,9 +29,6 @@ class MainViewModel(private val api: ServerAPI, private val repositoryFacade: De
 
     private val gson = Gson()
     private val scope = CoroutineScope(Dispatchers.IO)
-
-    private val _toastMessage = MutableLiveData<String>()
-    val toastMessage: LiveData<String> get() = _toastMessage
 
     fun fetchDevicesData(jwtToken: String) {
         scope.launch {
@@ -86,6 +86,31 @@ class MainViewModel(private val api: ServerAPI, private val repositoryFacade: De
     fun dropLocalDatabase() {
         scope.launch {
             repositoryFacade.deviceRepository.deleteAllDevices()
+        }
+    }
+
+    fun setPowerState(jwtToken: String, oldDevice: Device, isPowered: Boolean) {
+        scope.launch {
+            val switchedDevice = oldDevice.copy(isPowered = isPowered)
+            api.updateDevicePowerState(jwtToken, gson.toJson(switchedDevice))
+                .onSuccess { newDeviceJson ->
+                    val newDevice = gson.fromJson(newDeviceJson, Device::class.java)
+                    repositoryFacade.deviceRepository.updateDevicePowerState(newDevice.id, newDevice.isPowered)
+                }
+                .onFailure {
+                    _toastMessage.postValue("Unable to switch power state")
+                    if (oldDevice.isPowered != isPowered) {
+                        repositoryFacade.deviceRepository.updateDevicePowerState(
+                            oldDevice.id,
+                            !oldDevice.isPowered
+                        )
+                        delay(200)
+                        repositoryFacade.deviceRepository.updateDevicePowerState(
+                            oldDevice.id,
+                            oldDevice.isPowered
+                        )
+                    }
+                }
         }
     }
 }
