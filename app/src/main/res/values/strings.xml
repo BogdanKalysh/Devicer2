@@ -12,6 +12,8 @@
     <string name="button_logout">Logout</string>
     <string name="button_add">Add</string>
     <string name="button_cancel">Cancel</string>
+    <string name="button_delete">Delete</string>
+    <string name="button_none">-</string>
 
     <!--  Titles  -->
     <string name="title_hello_log_in">Hello,\nLog In</string>
@@ -21,6 +23,10 @@
     <string name="title_device_type">Device type:</string>
     <string name="title_device_model">Device model:</string>
     <string name="title_name">Name:</string>
+    <string name="title_model">Model:</string>
+    <string name="title_serial">Serial:</string>
+    <string name="title_mac">MAC:</string>
+    <string name="title_firmware">Firmware:</string>
 
     <!--  Hints  -->
     <string name="email">Email</string>
@@ -32,4 +38,7 @@
     <!--  Placeholders for textview  -->
     <string name="device_serial">"SN: %s"</string>
     <string name="undefined_model">Undefined model!</string>
+
+
+
 </resources>
