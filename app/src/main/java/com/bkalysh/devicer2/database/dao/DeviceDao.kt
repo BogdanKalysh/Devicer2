@@ -19,7 +19,7 @@ interface DeviceDao {
     suspend fun insertAllDevices(devices: List<Device>)
 
     @Query("SELECT * FROM device WHERE id = :id")
-    suspend fun getDeviceById(id: Long): Device?
+    fun getDeviceById(id: Long): LiveData<Device>
 
     @Query("SELECT * FROM device WHERE serial_number = :serialNumber")
     suspend fun getDeviceBySerial(serialNumber: String): Device?

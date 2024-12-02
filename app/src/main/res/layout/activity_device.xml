@@ -41,6 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_device_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -154,8 +155,9 @@
         android:background="@color/black_semi_transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
     <Button
-        android:id="@+id/btnLogout"
+        android:id="@+id/btn_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -166,13 +168,24 @@
         app:layout_constraintEnd_toEndOf="@id/btn_options" />
 
     <Button
-        android:id="@+id/btn_power_control"
+        android:id="@+id/btn_power_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="@string/button_none"
+        android:text="@string/button_turn_off"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/btn_power_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/button_turn_on"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

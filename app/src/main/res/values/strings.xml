@@ -13,7 +13,8 @@
     <string name="button_add">Add</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_delete">Delete</string>
-    <string name="button_none">-</string>
+    <string name="button_turn_off">Turn Off</string>
+    <string name="button_turn_on">Turn On</string>
 
     <!--  Titles  -->
     <string name="title_hello_log_in">Hello,\nLog In</string>

@@ -10,6 +10,7 @@ import com.bkalysh.devicer2.database.repository.DeviceRepository
 import com.bkalysh.devicer2.database.repository.DeviceTypeRepository
 import com.bkalysh.devicer2.database.repository.DevicerRepositoryFacade
 import com.bkalysh.devicer2.mocked.api.MockedServerAPI
+import com.bkalysh.devicer2.viewmodels.DeviceInfoViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -31,4 +32,5 @@ val appModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { SignUpViewModel(get()) }
     viewModel { MainViewModel(get(), get()) }
+    viewModel { DeviceInfoViewModel(get(), get()) }
 }

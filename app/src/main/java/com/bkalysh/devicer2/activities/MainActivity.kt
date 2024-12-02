@@ -40,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         setupLogoutListener()
         setupDevicesRecyclerAdapter()
         setUpToaster()
+        setupUsername()
+    }
+
+    override fun onResume() {
+        super.onResume()
         updateDataFromAPI()
     }
 
@@ -68,7 +73,9 @@ class MainActivity : AppCompatActivity() {
             viewModel.fetchUserName(token)
             viewModel.fetchDevicesData(token)
         }
+    }
 
+    private fun setupUsername() {
         viewModel.userName.observe(this) { userName ->
             binding.tvUserName.text = userName
         }

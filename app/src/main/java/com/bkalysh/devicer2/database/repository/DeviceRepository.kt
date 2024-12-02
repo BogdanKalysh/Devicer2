@@ -21,6 +21,10 @@ class DeviceRepository(private val deviceDao: DeviceDao) {
         deviceDao.deleteAllDevices()
     }
 
+    fun getDeviceById(id: Long): LiveData<Device> {
+        return deviceDao.getDeviceById(id)
+    }
+
     fun getAllDevices(): LiveData<List<Device>> {
         return deviceDao.getAllDevices()
     }

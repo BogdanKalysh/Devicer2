@@ -94,6 +94,7 @@ class MockedServerAPI(
     }
 
     override suspend fun getAllDevices(jwtToken: String): String {
+        delay(300)
         val tokenData = decodeJwtToken(jwtToken)
         val ownerId = userRepository.getUserByEmail(tokenData["email"].toString())?.id ?: 0
 
@@ -113,6 +114,24 @@ class MockedServerAPI(
         try {
             deviceRepository.updateDevicePowerState(device.id, device.isPowered)
             return Result.success(deviceJson)
+        } catch (e: Exception) {
+            return Result.failure(e)
+        }
+    }
+
+    override suspend fun deleteDevice(jwtToken: String, deviceJson: String): Result<String> {
+        val tokenData = decodeJwtToken(jwtToken)
+        val ownerId = userRepository.getUserByEmail(tokenData["email"].toString())?.id ?: 0
+        val device = gson.fromJson(deviceJson, Device::class.java)
+
+        delay(500)
+        if (device.ownerId != ownerId) {
+            return Result.failure(IllegalArgumentException("Invalid token"))
+        }
+
+        try {
+            deviceRepository.deleteDevice(device)
+            return Result.success("Deleted")
         } catch (e: Exception) {
             return Result.failure(e)
         }

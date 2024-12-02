@@ -13,6 +13,7 @@ import com.bkalysh.devicer2.activities.DeviceActivity
 import com.bkalysh.devicer2.database.models.Device
 import com.bkalysh.devicer2.database.models.DeviceModel
 import com.bkalysh.devicer2.databinding.ItemDeviceBinding
+import com.bkalysh.devicer2.utils.Constants.DEVICE_KEY_EXTRA
 import com.bkalysh.devicer2.utils.Utils.mapModelToImageResource
 
 
@@ -48,6 +49,7 @@ class DevicesRecyclerViewAdapter(private val context: Context, private val switc
             root.setOnClickListener {
                 Log.i(TAG, "Starting device info activity for: $device")
                 val intent = Intent(context, DeviceActivity::class.java)
+                intent.putExtra(DEVICE_KEY_EXTRA, device.id)
                 context.startActivity(intent)
             }
 
