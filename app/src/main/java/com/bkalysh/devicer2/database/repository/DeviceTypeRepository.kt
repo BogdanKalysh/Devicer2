@@ -10,6 +10,10 @@ class DeviceTypeRepository(private val deviceTypeDao: DeviceTypeDao) {
         deviceTypeDao.insertAll(deviceTypes)
     }
 
+    fun getDeviceTypeById(id: Long): DeviceType {
+        return deviceTypeDao.getById(id)
+    }
+
     suspend fun deleteAllDeviceTypes() {
         deviceTypeDao.deleteAll()
     }

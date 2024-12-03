@@ -1,11 +1,13 @@
 package com.bkalysh.devicer2.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bkalysh.devicer2.ServerAPI
 import com.bkalysh.devicer2.database.models.Device
 import com.bkalysh.devicer2.database.models.DeviceModel
+import com.bkalysh.devicer2.database.models.DeviceType
 import com.bkalysh.devicer2.database.repository.DevicerRepositoryFacade
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
@@ -18,6 +20,10 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
     val currentDevice: LiveData<Device> get() = _currentDevice
     val deviceModels: LiveData<List<DeviceModel>> = repositoryFacade.deviceModelRepository.getAllDeviceModels()
 
+    private val _currentDeviceType: MutableLiveData<DeviceType?> = MutableLiveData()
+    val currentDeviceType: LiveData<DeviceType?> get() = _currentDeviceType
+
+
     private val _toastMessage = MutableLiveData<String>()
     val toastMessage: LiveData<String> get() = _toastMessage
     private val _shouldFinish = MutableLiveData(false)
@@ -28,6 +34,15 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
 
     fun setUpCurrentDevice (deviceId: Long) {
         _currentDevice = repositoryFacade.deviceRepository.getDeviceById(deviceId)
+    }
+
+    fun updateDeviceType(device: Device) {
+        scope.launch {
+            val deviceModel = getDeviceModelById(device.deviceModelId)
+            val deviceType = getDeviceTypeById(deviceModel.deviceTypeId)
+
+            _currentDeviceType.postValue(deviceType)
+        }
     }
 
     fun setPowerState(jwtToken: String, oldDevice: Device, isPowered: Boolean) {
@@ -65,5 +80,13 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
                     _toastMessage.postValue("Unable to delete the device")
                 }
         }
+    }
+
+    private fun getDeviceModelById(id: Long): DeviceModel {
+        return repositoryFacade.deviceModelRepository.getDeviceModelById(id)
+    }
+
+    private fun getDeviceTypeById(id: Long): DeviceType {
+        return repositoryFacade.deviceTypeRepository.getDeviceTypeById(id)
     }
 }

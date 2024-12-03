@@ -13,6 +13,10 @@ class DeviceModelRepository(private val deviceModelDao: DeviceModelDao) {
         deviceModelDao.deleteAll()
     }
 
+    fun getDeviceModelById(id: Long): DeviceModel {
+        return deviceModelDao.getById(id)
+    }
+
     fun getAllDeviceModels(): LiveData<List<DeviceModel>> {
         return deviceModelDao.getAll()
     }

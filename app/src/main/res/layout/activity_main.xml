@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/ivUserPicture"
 
-            android:contentDescription="@string/user_profile_picture"
+            android:contentDescription="@string/descriptor_user_profile_picture"
             android:src="@drawable/ic_launcher_background"
 
             android:layout_width="40dp"

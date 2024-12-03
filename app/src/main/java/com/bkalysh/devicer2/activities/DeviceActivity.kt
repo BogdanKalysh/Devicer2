@@ -1,6 +1,7 @@
 package com.bkalysh.devicer2.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,12 @@ import androidx.core.view.isVisible
 import com.bkalysh.devicer2.R
 import com.bkalysh.devicer2.database.models.Device
 import com.bkalysh.devicer2.databinding.ActivityDeviceBinding
+import com.bkalysh.devicer2.fragments.SmartLampControlFragment
+import com.bkalysh.devicer2.fragments.SmartPlugControlFragment
+import com.bkalysh.devicer2.fragments.ThermostatControlFragment
+import com.bkalysh.devicer2.mocked.api.db.models.unique.fields.SmartLampData
+import com.bkalysh.devicer2.mocked.api.db.models.unique.fields.SmartPlugData
+import com.bkalysh.devicer2.mocked.api.db.models.unique.fields.ThermostatData
 import com.bkalysh.devicer2.utils.Constants.DEVICE_KEY_EXTRA
 import com.bkalysh.devicer2.utils.JWT
 import com.bkalysh.devicer2.utils.Utils.mapModelToImageResource
@@ -41,7 +48,7 @@ class DeviceActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val deviceId = intent.getLongExtra(DEVICE_KEY_EXTRA, -1)
+        val deviceId = intent.getLongExtra(DEVICE_KEY_EXTRA, -1L)
 
         if (deviceId == -1L) {
             Toast.makeText(this, "Device not found", Toast.LENGTH_SHORT).show()
@@ -54,10 +61,13 @@ class DeviceActivity : AppCompatActivity() {
         setupOptionsButton()
         setupDeleteButton()
         setupDeletionObserver()
+        setupDeviceControlFragment()
     }
 
     private fun setupDeviceData() {
         viewModel.currentDevice.observe(this) { device ->
+            Log.e("dfs", "UPDATING device: $device" )
+
             device?.apply {
                 currentDevice = this
                 binding.tvDeviceName.text = name
@@ -71,6 +81,8 @@ class DeviceActivity : AppCompatActivity() {
                 viewModel.deviceModels.observe(this@DeviceActivity) { models ->
                     binding.tvModel.text = (models.find { it.id == deviceModelId })?.name ?: "Unknown model"
                 }
+
+                viewModel.updateDeviceType(device)
             }
         }
     }
@@ -131,6 +143,33 @@ class DeviceActivity : AppCompatActivity() {
     private fun setupDeletionObserver() {
         viewModel.shouldFinish.observe(this) { shouldFinish ->
             if (shouldFinish) finish()
+        }
+    }
+
+    private fun setupDeviceControlFragment() {
+        viewModel.currentDeviceType.observe(this) { type ->
+            type?.let {
+                when (type.name) {
+                    "Smart lamp" -> {
+                        supportFragmentManager.beginTransaction().apply {
+                            replace(R.id.fl_device_control_fragment, SmartLampControlFragment(viewModel.currentDevice.value))
+                            commit()
+                        }
+                    }
+                    "Smart plug" -> {
+                        supportFragmentManager.beginTransaction().apply {
+                            replace(R.id.fl_device_control_fragment, SmartPlugControlFragment(viewModel.currentDevice.value))
+                            commit()
+                        }
+                    }
+                    "Thermostat" -> {
+                        supportFragmentManager.beginTransaction().apply {
+                            replace(R.id.fl_device_control_fragment, ThermostatControlFragment(viewModel.currentDevice.value))
+                            commit()
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -15,6 +15,9 @@ interface DeviceTypeDao {
     @Query("DELETE FROM device_type")
     suspend fun deleteAll()
 
+    @Query("SELECT * FROM device_type WHERE id = :id")
+    fun getById(id: Long): DeviceType
+
     @Query("SELECT * FROM device_type")
     fun getAll(): LiveData<List<DeviceType>>
 }

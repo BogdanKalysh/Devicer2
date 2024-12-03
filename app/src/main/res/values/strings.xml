@@ -4,7 +4,7 @@
 
     <!--  Content descriptors  -->
     <string name="descriptor_app_logo">Devicer application logo</string>
-    <string name="user_profile_picture">User profile picture</string>
+    <string name="descriptor_user_profile_picture">User profile picture</string>
 
     <!--  Buttons text  -->
     <string name="button_log_in">Log In</string>
@@ -39,7 +39,4 @@
     <!--  Placeholders for textview  -->
     <string name="device_serial">"SN: %s"</string>
     <string name="undefined_model">Undefined model!</string>
-
-
-
 </resources>
