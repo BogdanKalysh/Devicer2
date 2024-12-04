@@ -20,7 +20,7 @@ class ThermostatControlFragment(val device: Device?) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentThermostatControlBinding.inflate(layoutInflater)
         return binding.root
     }
