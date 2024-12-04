@@ -10,11 +10,9 @@ import com.bkalysh.devicer2.databinding.FragmentThermostatControlBinding
 import com.bkalysh.devicer2.viewmodels.DeviceInfoViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ThermostatControlFragment(val device: Device?) : Fragment() {
+class ThermostatControlFragment(val device: Device?, private val viewModel: DeviceInfoViewModel) : Fragment() {
     private lateinit var binding: FragmentThermostatControlBinding
-    private val viewModel: DeviceInfoViewModel by viewModel()
     private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreateView(

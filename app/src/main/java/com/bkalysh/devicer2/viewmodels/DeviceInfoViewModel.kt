@@ -1,6 +1,5 @@
 package com.bkalysh.devicer2.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,8 +19,8 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
     val currentDevice: LiveData<Device> get() = _currentDevice
     val deviceModels: LiveData<List<DeviceModel>> = repositoryFacade.deviceModelRepository.getAllDeviceModels()
 
-    private val _currentDeviceType: MutableLiveData<DeviceType?> = MutableLiveData()
-    val currentDeviceType: LiveData<DeviceType?> get() = _currentDeviceType
+    private val _currentDeviceType: MutableLiveData<DeviceType> = MutableLiveData()
+    val currentDeviceType: LiveData<DeviceType> get() = _currentDeviceType
 
 
     private val _toastMessage = MutableLiveData<String>()
@@ -41,7 +40,9 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
             val deviceModel = getDeviceModelById(device.deviceModelId)
             val deviceType = getDeviceTypeById(deviceModel.deviceTypeId)
 
-            _currentDeviceType.postValue(deviceType)
+            if (_currentDeviceType.value != deviceType) {
+                _currentDeviceType.postValue(deviceType)
+            }
         }
     }
 
@@ -88,5 +89,26 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
 
     private fun getDeviceTypeById(id: Long): DeviceType {
         return repositoryFacade.deviceTypeRepository.getDeviceTypeById(id)
+    }
+
+    suspend fun getSmartLampBrightness(jwtToken: String, device: Device): Int {
+        val deviceJson = gson.toJson(device)
+        api.getSmartLampBrightness(jwtToken, deviceJson)
+            .onSuccess { brightness ->
+                return brightness
+            }
+            .onFailure {
+                _shouldFinish.postValue(true)
+                _toastMessage.postValue("Smart lamp data was not found for the device")
+                return 0
+            }
+        return 0
+    }
+
+    fun setSmartLampBrightness(jwtToken: String, device: Device, brightness: Int) {
+        scope.launch {
+            val deviceJson = gson.toJson(device)
+            api.setSmartLampBrightness(jwtToken, deviceJson, brightness)
+        }
     }
 }

@@ -12,9 +12,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SmartPlugControlFragment(val device: Device?) : Fragment() {
+class SmartPlugControlFragment(private val device: Device?, private val viewModel: DeviceInfoViewModel) : Fragment() {
     private lateinit var binding: FragmentSmartPlugControlBinding
-    private val viewModel: DeviceInfoViewModel by viewModel()
     private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreateView(

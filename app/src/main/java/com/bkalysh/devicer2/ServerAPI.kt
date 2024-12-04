@@ -10,4 +10,6 @@ interface ServerAPI {
     suspend fun getAllDevices(jwtToken: String): String
     suspend fun updateDevicePowerState(jwtToken: String, deviceJson: String): Result<String>
     suspend fun deleteDevice(jwtToken: String, deviceJson: String): Result<String>
+    suspend fun getSmartLampBrightness(jwtToken: String, deviceJson: String): Result<Int>
+    suspend fun setSmartLampBrightness(jwtToken: String, deviceJson: String, brightness: Int)
 }

@@ -136,4 +136,45 @@ class MockedServerAPI(
             return Result.failure(e)
         }
     }
+
+    override suspend fun getSmartLampBrightness(jwtToken: String, deviceJson: String): Result<Int> {
+        val tokenData = decodeJwtToken(jwtToken)
+        val ownerId = userRepository.getUserByEmail(tokenData["email"].toString())?.id ?: 0
+        val device = gson.fromJson(deviceJson, Device::class.java)
+
+        delay(500)
+        if (device.ownerId != ownerId) {
+            return Result.failure(IllegalArgumentException("Invalid token"))
+        }
+
+        try {
+            val lampData = deviceRepository.getLampDataByDeviceId(device.id)
+            lampData?.apply {
+                return Result.success(brightness)
+            }
+            return Result.failure(Exception("Could not find lamp data"))
+        } catch (e: Exception) {
+            return Result.failure(e)
+        }
+    }
+
+    override suspend fun setSmartLampBrightness(
+        jwtToken: String,
+        deviceJson: String,
+        brightness: Int
+    ) {
+        val tokenData = decodeJwtToken(jwtToken)
+        val ownerId = userRepository.getUserByEmail(tokenData["email"].toString())?.id ?: 0
+        val device = gson.fromJson(deviceJson, Device::class.java)
+
+        delay(500)
+        if (device.ownerId != ownerId) {
+            return
+        }
+
+        deviceRepository.getLampDataByDeviceId(device.id)?.let { smartLampData ->
+            val newLampData = smartLampData.copy(brightness = brightness)
+            deviceRepository.upsertLampData(newLampData)
+        }
+    }
 }

@@ -38,5 +38,6 @@
 
     <!--  Placeholders for textview  -->
     <string name="device_serial">"SN: %s"</string>
+    <string name="percentage">"%d %%"</string>
     <string name="undefined_model">Undefined model!</string>
 </resources>

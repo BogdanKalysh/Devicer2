@@ -6,14 +6,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.SmartLampControlFragment">
 
-    <TextView
-        android:id="@+id/tv_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="LAMP"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="51dp"
+    <ImageView
+        android:id="@+id/iv"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <TextView
+        android:id="@+id/tv_brightness_percentage"
+
+        tools:text="45%"
+        android:textSize="30sp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <SeekBar
+        android:id="@+id/sb_brightness_slider"
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:max="100"
+        app:layout_constraintTop_toBottomOf="@id/tv_brightness_percentage"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

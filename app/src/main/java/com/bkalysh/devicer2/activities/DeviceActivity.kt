@@ -152,19 +152,19 @@ class DeviceActivity : AppCompatActivity() {
                 when (type.name) {
                     "Smart lamp" -> {
                         supportFragmentManager.beginTransaction().apply {
-                            replace(R.id.fl_device_control_fragment, SmartLampControlFragment(viewModel.currentDevice.value))
+                            replace(R.id.fl_device_control_fragment, SmartLampControlFragment(viewModel.currentDevice.value, viewModel))
                             commit()
                         }
                     }
                     "Smart plug" -> {
                         supportFragmentManager.beginTransaction().apply {
-                            replace(R.id.fl_device_control_fragment, SmartPlugControlFragment(viewModel.currentDevice.value))
+                            replace(R.id.fl_device_control_fragment, SmartPlugControlFragment(viewModel.currentDevice.value, viewModel))
                             commit()
                         }
                     }
                     "Thermostat" -> {
                         supportFragmentManager.beginTransaction().apply {
-                            replace(R.id.fl_device_control_fragment, ThermostatControlFragment(viewModel.currentDevice.value))
+                            replace(R.id.fl_device_control_fragment, ThermostatControlFragment(viewModel.currentDevice.value, viewModel))
                             commit()
                         }
                     }
