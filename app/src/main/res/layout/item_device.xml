@@ -4,13 +4,18 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="20dp">
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/device_card_ripple">
 
     <ImageView
         android:id="@+id/img_device"
-        android:contentDescription="device"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:importantForAccessibility="no"
+        android:layout_width="@dimen/device_card_image_size"
+        android:layout_height="@dimen/device_card_image_size"
+        tools:src="@drawable/device_plug_1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,27 +23,31 @@
 
     <TextView
         android:id="@+id/tv_device_name"
-        tools:text="Home Number 1"
+        tools:text="Living room plug"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textSize="20sp"
+        android:textSize="@dimen/card_title_text_size"
+        android:fontFamily="@font/inter_semi_bold"
+        android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintTop_toTopOf="@id/img_device"
         app:layout_constraintStart_toEndOf="@id/img_device"
-        app:layout_constraintBottom_toTopOf="@id/tv_device_serial"
         app:layout_constraintEnd_toStartOf="@id/sw_power_state" />
 
     <TextView
         android:id="@+id/tv_device_serial"
-        tools:text="SN 50100070"
+        tools:text="SN: 50100070"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textSize="15sp"
+        android:textSize="@dimen/card_small_text_size"
+        android:textColor="@color/on_secondary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintStart_toEndOf="@id/img_device"
         app:layout_constraintTop_toBottomOf="@id/tv_device_name"
         app:layout_constraintBottom_toTopOf="@id/tv_device_model"
@@ -46,13 +55,15 @@
 
     <TextView
         android:id="@+id/tv_device_model"
-        tools:text="super shine lamp"
+        tools:text="Super shine lamp"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textSize="15sp"
+        android:textSize="@dimen/card_small_text_size"
+        android:textColor="@color/on_secondary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="@id/img_device"
         app:layout_constraintStart_toEndOf="@id/img_device"
         app:layout_constraintTop_toBottomOf="@id/tv_device_serial"
@@ -63,7 +74,12 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:scaleX="1.3"
+        android:scaleY="1.3"
+        android:layout_marginEnd="22dp"
+
+        app:thumbTint="@color/white"
+        app:trackTint="@color/switch_track_background"
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
