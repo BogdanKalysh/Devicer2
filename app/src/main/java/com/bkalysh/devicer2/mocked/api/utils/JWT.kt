@@ -17,7 +17,7 @@ class JWT {
                 setClaim("user_name", userName)
                 setClaim("email", email)
                 setIssuedAtToNow()
-                setExpirationTimeMinutesInTheFuture(60f)
+                setExpirationTimeMinutesInTheFuture(240f)
             }
 
             val jws = JsonWebSignature().apply {
@@ -27,25 +27,6 @@ class JWT {
             }
 
             return jws.compactSerialization
-        }
-
-        fun verifyJwtToken(jwt: String): Boolean {
-            val secretKey = "devicer-jwt-key-!#@5$&1234567890".toByteArray() // todo move key
-
-            val jwtConsumer = JwtConsumerBuilder()
-                .setRequireExpirationTime()
-                .setExpectedIssuer("devicer")
-                .setVerificationKey(HmacKey(secretKey))
-                .build()
-
-            return try {
-                val claims = jwtConsumer.processToClaims(jwt)
-                println("JWT validated. Claims: $claims")
-                true
-            } catch (e: Exception) {
-                println("Invalid JWT: ${e.message}")
-                false
-            }
         }
 
         fun decodeJwtToken(token: String): Map<String, Any> {

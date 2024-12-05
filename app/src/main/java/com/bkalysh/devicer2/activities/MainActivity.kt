@@ -114,13 +114,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupLogoutListener() {
         viewModel.shouldLogOut.observe(this) { shouldLogOut ->
-            if (shouldLogOut) logout()
+            if (shouldLogOut) {
+                Toast.makeText(this, "Logging out.", Toast.LENGTH_SHORT).show()
+                logout()
+            }
         }
     }
 
     private fun logout() {
         deleteJwtToken(this)
-        Toast.makeText(this, "Logging out", Toast.LENGTH_SHORT).show()
         viewModel.dropLocalDatabase()
         val intent = Intent(this, StartActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
