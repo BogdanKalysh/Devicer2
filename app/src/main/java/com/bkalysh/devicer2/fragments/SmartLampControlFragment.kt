@@ -22,13 +22,14 @@ import kotlinx.coroutines.withContext
 
 class SmartLampControlFragment(private val device: Device?, private val viewModel: DeviceInfoViewModel) : Fragment() {
     private lateinit var binding: FragmentSmartLampControlBinding
-    private val scope = CoroutineScope(Dispatchers.IO)
+    private lateinit var scope: CoroutineScope
     private var updaterJob: Job = Job()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        scope = CoroutineScope(Dispatchers.IO)
         binding = FragmentSmartLampControlBinding.inflate(inflater, container, false)
         updaterJob = setupBrightnessRequester()
         setupSliderObserver()
@@ -39,12 +40,13 @@ class SmartLampControlFragment(private val device: Device?, private val viewMode
     private fun setupBrightnessRequester(): Job {
         return scope.launch {
             updateSliderPercentage(requestBrightness())
+            delay(500L)
             while (isActive) {
                 val brightness = requestBrightness()
                 if (binding.sbBrightnessSlider.progress != brightness) {
                     updateSliderPercentage(brightness)
                 }
-                delay(1000L)
+                delay(500L)
             }
         }
     }

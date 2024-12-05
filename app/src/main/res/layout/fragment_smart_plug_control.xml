@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/tv_brightness_percentage"
+        android:id="@+id/tv_wattage"
 
         tools:text="42 W"
         android:textSize="30sp"

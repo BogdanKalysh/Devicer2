@@ -15,4 +15,5 @@ interface ServerAPI {
     suspend fun getThermostatCurrentTemperature(jwtToken: String, deviceJson: String): Result<Int>
     suspend fun getThermostatGoalTemperature(jwtToken: String, deviceJson: String): Result<Int>
     suspend fun setThermostatGoalTemperature(jwtToken: String, deviceJson: String, goalTemperature: Int)
+    suspend fun getSmartPlugWattage(jwtToken: String, deviceJson: String): Result<Int>
 }

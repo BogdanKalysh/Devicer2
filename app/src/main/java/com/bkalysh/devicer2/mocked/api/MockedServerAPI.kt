@@ -245,4 +245,30 @@ class MockedServerAPI(
             deviceRepository.upsertThermostatData(newThermostatData)
         }
     }
+
+    override suspend fun getSmartPlugWattage(jwtToken: String, deviceJson: String): Result<Int> {
+        val tokenData = decodeJwtToken(jwtToken)
+        val ownerId = userRepository.getUserByEmail(tokenData["email"].toString())?.id ?: 0
+        val device = gson.fromJson(deviceJson, Device::class.java)
+
+        delay(500)
+        if (device.ownerId != ownerId) {
+            return Result.failure(IllegalArgumentException("Invalid token"))
+        }
+
+        try {
+            val smartPlugData = deviceRepository.getPlugDataByDeviceId(device.id)
+            smartPlugData?.apply {
+                val powerState = deviceRepository.getDeviceById(deviceId)?.isPowered ?: false
+                return if (powerState) {
+                    Result.success(wattage)
+                } else {
+                    Result.success(0)
+                }
+            }
+            return Result.failure(Exception("Could not find smart plug data"))
+        } catch (e: Exception) {
+            return Result.failure(e)
+        }
+    }
 }

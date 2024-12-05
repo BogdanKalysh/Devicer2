@@ -146,4 +146,18 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
             api.setThermostatGoalTemperature(jwtToken, deviceJson, goalTemperature)
         }
     }
+
+    suspend fun getSmartPlugWattage (jwtToken: String, device: Device): Int {
+        val deviceJson = gson.toJson(device)
+        api.getSmartPlugWattage(jwtToken, deviceJson)
+            .onSuccess { wattage ->
+                return wattage
+            }
+            .onFailure {
+                _shouldFinish.postValue(true)
+                _toastMessage.postValue("Smart lamp data was not found for the device")
+                return 0
+            }
+        return 0
+    }
 }

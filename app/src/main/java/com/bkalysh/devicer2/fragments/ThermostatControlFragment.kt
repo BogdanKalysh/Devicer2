@@ -59,7 +59,7 @@ class ThermostatControlFragment(val device: Device?, private val viewModel: Devi
                     updateCurrentTemperature(currentTemp.await())
                 }
                 updateHeatingState(currentTemp.await(), goalTemp.await())
-                delay(1000L)
+                delay(500L)
             }
         }
     }
