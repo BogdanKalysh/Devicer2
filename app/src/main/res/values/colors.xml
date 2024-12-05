@@ -12,6 +12,7 @@
     <color name="on_secondary">#E7E8DE</color>
     <color name="on_secondary_dimmed">#B2B2AB</color>
     <color name="accent">#26ED8A</color>
+    <color name="accent_red">#ED4126</color>
 
     <color name="ripple_black_transparent">#33000000</color>
 </resources>
