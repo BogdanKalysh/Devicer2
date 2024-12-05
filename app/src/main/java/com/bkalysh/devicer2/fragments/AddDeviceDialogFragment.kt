@@ -33,6 +33,9 @@ class AddDeviceDialogFragment : DialogFragment()  {
             setUpDeviceSpinners()
 
             val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+            isCancelable = false
+
             dialog
         } ?: throw IllegalStateException("Activity cannot be null")
     }

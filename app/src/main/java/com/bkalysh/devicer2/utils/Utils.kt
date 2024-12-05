@@ -29,16 +29,16 @@ object Utils {
 
     fun mapModelToImageResource(modelId: Int): Int {
         val images = listOf(
+            0,
+            R.drawable.device_lamp_1,
+            R.drawable.device_lamp_1,
+            R.drawable.device_lamp_1,
             R.drawable.device_plug_1,
             R.drawable.device_plug_1,
             R.drawable.device_plug_1,
-            R.drawable.device_plug_1,
-            R.drawable.device_plug_1,
-            R.drawable.device_plug_1,
-            R.drawable.device_plug_1,
-            R.drawable.device_plug_1,
-            R.drawable.device_plug_1,
-            R.drawable.device_plug_1
+            R.drawable.device_thermostat_1,
+            R.drawable.device_thermostat_1,
+            R.drawable.device_thermostat_1
         )
 
         return images.elementAtOrNull(modelId) ?: R.drawable.ic_launcher_foreground

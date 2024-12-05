@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import com.bkalysh.devicer2.R
 import com.bkalysh.devicer2.database.models.DeviceType
 
 class DeviceTypeSpinnerAdapter(context: Context, private val deviceTypes: List<DeviceType>) :
@@ -18,20 +20,23 @@ class DeviceTypeSpinnerAdapter(context: Context, private val deviceTypes: List<D
         val view = super.getDropDownView(position, convertView, parent)
         val textView = view.findViewById<TextView>(android.R.id.text1)
         textView.text = deviceTypes[position].name
+        textView.setPadding(32, 32, 32, 32)
+        val textSize = parent.context.resources.getDimension(R.dimen.spinner_text_size)
+        textView.textSize = textSize / parent.context.resources.displayMetrics.density
+        val textColor = ContextCompat.getColor(parent.context, R.color.on_secondary)
+        textView.setTextColor(textColor)
         return view
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = super.getView(position, convertView, parent)
         val textView = view.findViewById<TextView>(android.R.id.text1)
-
-        // Set the selected type text (this is shown when the spinner is closed)
         textView.text = deviceTypes[position].name
-
-        // Optionally customize the appearance of the selected item
-        // For example, change text color, add padding, etc.
-        textView.setPadding(32, 32, 32, 32)  // Customize padding if needed
-
+        textView.setPadding(32, 32, 32, 32)
+        val textSize = parent.context.resources.getDimension(R.dimen.spinner_text_size)
+        textView.textSize = textSize / parent.context.resources.displayMetrics.density
+        val textColor = ContextCompat.getColor(parent.context, R.color.on_secondary)
+        textView.setTextColor(textColor)
         return view
     }
 }

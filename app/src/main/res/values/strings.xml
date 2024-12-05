@@ -36,7 +36,7 @@
     <string name="password">Password</string>
     <string name="name">Name</string>
     <string name="repeat_password">Repeat password</string>
-    <string name="enter">Enter</string>
+    <string name="enter_name">Enter name</string>
 
     <!--  Placeholders for textview  -->
     <string name="device_serial">"SN: %s"</string>
