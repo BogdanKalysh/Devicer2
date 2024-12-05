@@ -8,7 +8,9 @@
 
     <!--  Buttons text  -->
     <string name="button_log_in">Log In</string>
+    <string name="button_log_in_underscored"><u>Log In</u></string>
     <string name="button_sign_up">Sign Up</string>
+    <string name="button_sign_up_underscored"><u>Sign Up</u></string>
     <string name="button_logout">Logout</string>
     <string name="button_add">Add</string>
     <string name="button_cancel">Cancel</string>
