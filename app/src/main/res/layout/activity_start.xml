@@ -5,38 +5,56 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     tools:context=".activities.StartActivity">
 
     <ImageView
         android:id="@+id/ivLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/main_logo"
         android:contentDescription="@string/descriptor_app_logo"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/btnLogInScreen" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogInScreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_height"
+        app:layout_constraintWidth_max="320dp"
+
+        android:background="@drawable/primary_button_ripple"
+        android:fontFamily="@font/inter_semi_bold"
+        android:textColor="@color/primary"
+
 
         android:text="@string/button_log_in"
+        android:textSize="@dimen/button_text_size"
+        android:textAllCaps="false"
 
+        android:layout_margin="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnSignUpScreen" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignUpScreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_height"
+        app:layout_constraintWidth_max="320dp"
+
+        android:background="@drawable/secondary_button_ripple"
+        android:fontFamily="@font/inter_semi_bold"
+        android:textColor="@color/on_secondary"
 
         android:text="@string/button_sign_up"
+        android:textSize="@dimen/button_text_size"
+        android:textAllCaps="false"
 
+        android:layout_margin="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
