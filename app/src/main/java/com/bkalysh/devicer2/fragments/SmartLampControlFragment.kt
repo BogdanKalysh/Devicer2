@@ -70,7 +70,6 @@ class SmartLampControlFragment(private val device: Device?, private val viewMode
         binding.sbBrightnessSlider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    updaterJob.cancel()
                     binding.tvBrightnessPercentage.text =
                         requireContext().getString(R.string.percentage, progress)
                      JWT.getJwtToken(requireContext())?.let { token ->
@@ -78,11 +77,14 @@ class SmartLampControlFragment(private val device: Device?, private val viewMode
                             viewModel.setSmartLampBrightness(token, device, progress)
                         }
                     }
-                    updaterJob = setupBrightnessRequester()
                 }
             }
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                updaterJob.cancel()
+            }
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                updaterJob = setupBrightnessRequester()
+            }
         })
     }
 

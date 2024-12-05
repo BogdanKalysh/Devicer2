@@ -177,4 +177,72 @@ class MockedServerAPI(
             deviceRepository.upsertLampData(newLampData)
         }
     }
+
+    override suspend fun getThermostatCurrentTemperature(
+        jwtToken: String,
+        deviceJson: String
+    ): Result<Int> {
+        val tokenData = decodeJwtToken(jwtToken)
+        val ownerId = userRepository.getUserByEmail(tokenData["email"].toString())?.id ?: 0
+        val device = gson.fromJson(deviceJson, Device::class.java)
+
+        delay(500)
+        if (device.ownerId != ownerId) {
+            return Result.failure(IllegalArgumentException("Invalid token"))
+        }
+
+        try {
+            val thermostatData = deviceRepository.getThermostatDataByDeviceId(device.id)
+            thermostatData?.apply {
+                return Result.success(roomTemperature)
+            }
+            return Result.failure(Exception("Could not find thermostat data"))
+        } catch (e: Exception) {
+            return Result.failure(e)
+        }
+    }
+
+    override suspend fun getThermostatGoalTemperature(
+        jwtToken: String,
+        deviceJson: String
+    ): Result<Int> {
+        val tokenData = decodeJwtToken(jwtToken)
+        val ownerId = userRepository.getUserByEmail(tokenData["email"].toString())?.id ?: 0
+        val device = gson.fromJson(deviceJson, Device::class.java)
+
+        delay(500)
+        if (device.ownerId != ownerId) {
+            return Result.failure(IllegalArgumentException("Invalid token"))
+        }
+
+        try {
+            val thermostatData = deviceRepository.getThermostatDataByDeviceId(device.id)
+            thermostatData?.apply {
+                return Result.success(goalTemperature)
+            }
+            return Result.failure(Exception("Could not find thermostat data"))
+        } catch (e: Exception) {
+            return Result.failure(e)
+        }
+    }
+
+    override suspend fun setThermostatGoalTemperature(
+        jwtToken: String,
+        deviceJson: String,
+        goalTemperature: Int
+    ) {
+        val tokenData = decodeJwtToken(jwtToken)
+        val ownerId = userRepository.getUserByEmail(tokenData["email"].toString())?.id ?: 0
+        val device = gson.fromJson(deviceJson, Device::class.java)
+
+        delay(500)
+        if (device.ownerId != ownerId) {
+            return
+        }
+
+        deviceRepository.getThermostatDataByDeviceId(device.id)?.let { thermostatData ->
+            val newThermostatData = thermostatData.copy(goalTemperature = goalTemperature)
+            deviceRepository.upsertThermostatData(newThermostatData)
+        }
+    }
 }

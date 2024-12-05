@@ -35,7 +35,7 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
         _currentDevice = repositoryFacade.deviceRepository.getDeviceById(deviceId)
     }
 
-    fun updateDeviceType(device: Device) {
+    fun updateDeviceType (device: Device) {
         scope.launch {
             val deviceModel = getDeviceModelById(device.deviceModelId)
             val deviceType = getDeviceTypeById(deviceModel.deviceTypeId)
@@ -46,7 +46,7 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
         }
     }
 
-    fun setPowerState(jwtToken: String, oldDevice: Device, isPowered: Boolean) {
+    fun setPowerState (jwtToken: String, oldDevice: Device, isPowered: Boolean) {
         scope.launch {
             val switchedDevice = oldDevice.copy(isPowered = isPowered)
             api.updateDevicePowerState(jwtToken, gson.toJson(switchedDevice))
@@ -71,7 +71,7 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
         }
     }
 
-    fun deleteDevice(jwtToken: String, device: Device) {
+    fun deleteDevice (jwtToken: String, device: Device) {
         scope.launch {
             val deviceJson = gson.toJson(device)
             api.deleteDevice(jwtToken, deviceJson)
@@ -83,15 +83,15 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
         }
     }
 
-    private fun getDeviceModelById(id: Long): DeviceModel {
+    private fun getDeviceModelById (id: Long): DeviceModel {
         return repositoryFacade.deviceModelRepository.getDeviceModelById(id)
     }
 
-    private fun getDeviceTypeById(id: Long): DeviceType {
+    private fun getDeviceTypeById (id: Long): DeviceType {
         return repositoryFacade.deviceTypeRepository.getDeviceTypeById(id)
     }
 
-    suspend fun getSmartLampBrightness(jwtToken: String, device: Device): Int {
+    suspend fun getSmartLampBrightness (jwtToken: String, device: Device): Int {
         val deviceJson = gson.toJson(device)
         api.getSmartLampBrightness(jwtToken, deviceJson)
             .onSuccess { brightness ->
@@ -105,10 +105,45 @@ class DeviceInfoViewModel(private val api: ServerAPI, private val repositoryFaca
         return 0
     }
 
-    fun setSmartLampBrightness(jwtToken: String, device: Device, brightness: Int) {
+    fun setSmartLampBrightness (jwtToken: String, device: Device, brightness: Int) {
         scope.launch {
             val deviceJson = gson.toJson(device)
             api.setSmartLampBrightness(jwtToken, deviceJson, brightness)
+        }
+    }
+
+    suspend fun getThermostatCurrentTemperature (jwtToken: String, device: Device): Int {
+        val deviceJson = gson.toJson(device)
+        api.getThermostatCurrentTemperature(jwtToken, deviceJson)
+            .onSuccess { currentTemp ->
+                return currentTemp
+            }
+            .onFailure {
+                _shouldFinish.postValue(true)
+                _toastMessage.postValue("Thermostat data was not found for the device")
+                return 0
+            }
+        return 0
+    }
+
+    suspend fun getThermostatGoalTemperature (jwtToken: String, device: Device): Int {
+        val deviceJson = gson.toJson(device)
+        api.getThermostatGoalTemperature(jwtToken, deviceJson)
+            .onSuccess { goalTemp ->
+                return goalTemp
+            }
+            .onFailure {
+                _shouldFinish.postValue(true)
+                _toastMessage.postValue("Thermostat data was not found for the device")
+                return 0
+            }
+        return 0
+    }
+
+    fun setThermostatGoalTemperature (jwtToken: String, device: Device, goalTemperature: Int) {
+        scope.launch {
+            val deviceJson = gson.toJson(device)
+            api.setThermostatGoalTemperature(jwtToken, deviceJson, goalTemperature)
         }
     }
 }

@@ -43,31 +43,24 @@ class DeviceActivity : AppCompatActivity() {
             finish()
         }
 
-        setUpToaster()
-    }
-
-    override fun onStart() {
-        super.onStart()
         val deviceId = intent.getLongExtra(DEVICE_KEY_EXTRA, -1L)
-
         if (deviceId == -1L) {
             Toast.makeText(this, "Device not found", Toast.LENGTH_SHORT).show()
             finish()
         }
 
         viewModel.setUpCurrentDevice(deviceId)
+        setupDeviceControlFragment()
         setupDeviceData()
         setupPowerButtons()
         setupOptionsButton()
         setupDeleteButton()
         setupDeletionObserver()
-        setupDeviceControlFragment()
+        setUpToaster()
     }
 
     private fun setupDeviceData() {
         viewModel.currentDevice.observe(this) { device ->
-            Log.e("dfs", "UPDATING device: $device" )
-
             device?.apply {
                 currentDevice = this
                 binding.tvDeviceName.text = name
