@@ -5,6 +5,7 @@
     <!--  Content descriptors  -->
     <string name="descriptor_app_logo">Devicer application logo</string>
     <string name="descriptor_user_profile_picture">User profile picture</string>
+    <string name="descriptor_device">device</string>
 
     <!--  Buttons text  -->
     <string name="button_log_in">Log In</string>

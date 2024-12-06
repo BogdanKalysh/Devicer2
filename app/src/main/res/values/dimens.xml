@@ -12,8 +12,7 @@
     <dimen name="spinner_text_size">14sp</dimen>
     <dimen name="card_title_text_size">14sp</dimen>
     <dimen name="card_small_text_size">10sp</dimen>
-
-
+    <dimen name="device_title_text_size">20sp</dimen>
     <dimen name="device_card_image_size">64dp</dimen>
 
     <!--Text sizes-->

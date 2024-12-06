@@ -5,14 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     tools:context=".activities.DeviceActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_exit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:text="x"
+        android:layout_width="@dimen/small_button_height"
+        android:layout_height="@dimen/small_button_height"
+        android:contentDescription="@string/button_add"
+        android:src="@drawable/ic_close"
+        android:background="@drawable/secondary_button_ripple"
+        android:layout_margin="16dp"
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -22,39 +26,47 @@
 
         tools:text="Bedroom plug"
 
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textColor="@color/on_secondary"
+        android:fontFamily="@font/inter_semi_bold"
+        android:textSize="@dimen/device_title_text_size"
 
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="@id/btn_exit"
+        app:layout_constraintBottom_toBottomOf="@id/btn_exit"
         app:layout_constraintStart_toEndOf="@id/btn_exit"
         app:layout_constraintEnd_toStartOf="@id/btn_options"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:text="..."
+        android:layout_width="@dimen/small_button_height"
+        android:layout_height="@dimen/small_button_height"
+        android:contentDescription="@string/button_add"
+        android:src="@drawable/ic_options"
+        android:background="@drawable/secondary_button_ripple"
+        android:layout_margin="16dp"
 
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_device_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:padding="20dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_device_name">
+        android:padding="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_exit"
+        android:background="@drawable/device_card_background">
 
         <ImageView
             android:id="@+id/img_device"
-            android:contentDescription="device"
+            android:contentDescription="@string/descriptor_device"
             tools:src="@drawable/ic_launcher_background"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -63,10 +75,13 @@
             android:id="@+id/tv_model_title"
 
             android:text="@string/title_model"
+            android:textColor="@color/on_secondary"
+            android:fontFamily="@font/inter_semi_bold"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+            android:layout_marginStart="16dp"
             app:layout_constraintTop_toTopOf="@id/img_device"
             app:layout_constraintStart_toEndOf="@id/img_device"/>
 
@@ -74,77 +89,91 @@
             android:id="@+id/tv_serial_title"
 
             android:text="@string/title_serial"
+            android:textColor="@color/on_secondary"
+            android:fontFamily="@font/inter_semi_bold"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             app:layout_constraintTop_toBottomOf="@id/tv_model_title"
-            app:layout_constraintStart_toEndOf="@id/img_device"/>
+            app:layout_constraintStart_toStartOf="@id/tv_model_title"/>
 
         <TextView
             android:id="@+id/tv_mac_title"
 
             android:text="@string/title_mac"
+            android:textColor="@color/on_secondary"
+            android:fontFamily="@font/inter_semi_bold"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             app:layout_constraintTop_toBottomOf="@id/tv_serial_title"
-            app:layout_constraintStart_toEndOf="@id/img_device"/>
+            app:layout_constraintStart_toStartOf="@id/tv_model_title"/>
 
         <TextView
             android:id="@+id/tv_firmware_title"
 
             android:text="@string/title_firmware"
+            android:textColor="@color/on_secondary"
+            android:fontFamily="@font/inter_semi_bold"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             app:layout_constraintTop_toBottomOf="@id/tv_mac_title"
-            app:layout_constraintStart_toEndOf="@id/img_device"/>
+            app:layout_constraintStart_toStartOf="@id/tv_model_title"/>
 
         <TextView
             android:id="@+id/tv_model"
 
             tools:text="Phillips e27"
+            android:textColor="@color/on_secondary"
+            android:fontFamily="@font/inter_regular"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            app:layout_constraintTop_toTopOf="@id/img_device"
+            app:layout_constraintTop_toTopOf="@id/tv_model_title"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/tv_serial"
 
             tools:text="DSD34FDS32"
+            android:textColor="@color/on_secondary"
+            android:fontFamily="@font/inter_regular"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            app:layout_constraintTop_toBottomOf="@id/tv_model_title"
+            app:layout_constraintTop_toTopOf="@id/tv_serial_title"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/tv_mac"
 
             tools:text="e0:60:66:02:e2:1b"
+            android:textColor="@color/on_secondary"
+            android:fontFamily="@font/inter_regular"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            app:layout_constraintTop_toBottomOf="@id/tv_serial_title"
+            app:layout_constraintTop_toTopOf="@id/tv_mac_title"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/tv_firmware"
 
             tools:text="2.3.21"
+            android:textColor="@color/on_secondary"
+            android:fontFamily="@font/inter_regular"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            app:layout_constraintTop_toBottomOf="@id/tv_mac_title"
+            app:layout_constraintTop_toTopOf="@id/tv_firmware_title"
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -157,23 +186,39 @@
         app:layout_constraintTop_toBottomOf="@id/cl_device_info"
         app:layout_constraintBottom_toTopOf="@id/btn_power_on"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_power_off"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="@dimen/small_button_height"
+
+        android:background="@drawable/secondary_button_ripple"
+        android:fontFamily="@font/inter_semi_bold"
+        android:textColor="@color/on_secondary"
 
         android:text="@string/button_turn_off"
+        android:textSize="@dimen/button_text_size"
+        android:textAllCaps="false"
+
+        android:layout_marginBottom="24dp"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_power_on"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="@dimen/small_button_height"
+
+        android:background="@drawable/primary_button_ripple"
+        android:fontFamily="@font/inter_semi_bold"
+        android:textColor="@color/primary"
 
         android:text="@string/button_turn_on"
+        android:textSize="@dimen/button_text_size"
+        android:textAllCaps="false"
+
+        android:layout_marginBottom="24dp"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -186,14 +231,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="165dp"
+        android:layout_height="@dimen/button_height"
 
         android:text="@string/button_delete"
-        android:visibility="invisible"
+        android:textAllCaps="false"
+        android:textAlignment="textStart"
+        android:fontFamily="@font/inter_regular"
+        android:textColor="@color/accent_red"
+        android:background="@drawable/device_card_ripple"
 
+        android:layout_marginTop="4dp"
+        android:paddingStart="16dp"
+        tools:ignore="RtlSymmetry"
+        android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@id/btn_options"
-        app:layout_constraintEnd_toEndOf="@id/btn_options" />
+        app:layout_constraintEnd_toEndOf="@id/btn_options"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
