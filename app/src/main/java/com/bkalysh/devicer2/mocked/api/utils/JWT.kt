@@ -1,5 +1,6 @@
 package com.bkalysh.devicer2.mocked.api.utils
 
+import com.bkalysh.devicer2.mocked.api.utils.Secrets.secretKey
 import org.jose4j.jws.AlgorithmIdentifiers
 import org.jose4j.jws.JsonWebSignature
 import org.jose4j.jwt.JwtClaims
@@ -9,8 +10,6 @@ import org.jose4j.keys.HmacKey
 class JWT {
     companion object {
         fun createJwtToken(email: String, userName: String): String {
-            val secretKey = "devicer-jwt-key-!#@5$&1234567890".toByteArray() // todo move key
-
             val claims = JwtClaims().apply {
                 issuer = "devicer"
                 subject = userName
@@ -30,8 +29,6 @@ class JWT {
         }
 
         fun decodeJwtToken(token: String): Map<String, Any> {
-            val secretKey = "devicer-jwt-key-!#@5$&1234567890".toByteArray() // todo move key
-
             val jwtConsumer = JwtConsumerBuilder()
                 .setRequireExpirationTime()
                 .setAllowedClockSkewInSeconds(30)
